@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual LGD Expert System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #334155;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            color: #475569;
+            margin-top: 25px;
+        }
+
+        p {
+            font-size: 1.05rem;
+        }
+
+        .btn-print {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-print:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .alert-warning {
+            background-color: #fef3c7;
+            border: 1px solid #fde68a;
+            color: #92400e;
+        }
+
+        .alert-success {
+            background-color: #d1fae5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        .alert i {
+            margin-top: 3px;
+            font-size: 1.2rem;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            h1,
+            h2,
+            h3 {
+                page-break-after: avoid;
+            }
+
+            pre {
+                border: 1px solid #ccc;
+                background: #fff;
+                color: #000;
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-scale-balanced" style="margin-right: 15px;"></i>Manual de Experto: Cuota LGD 2%
+            </h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Sistema Integrado de Análisis de Plantillas
+                (Criterio Técnico 98/2016)</p>
+            <button class="btn-print no-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir /
+                Guardar PDF</button>
+        </header>
+
+        <div class="alert alert-warning">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div>
+                <strong>Requisito Previo a la Herramienta Web</strong><br>
+                Antes de subir los datos al Dashboard web, es *crítico* sanear el bruto exportado por SAP. SAP genera
+                solapamientos en las fechas de los contratos cuando hay cambios de categoría que inflan la plantilla.
+                Este manual incluye la Macro VBA indispensable para limpiar esos datos.
+            </div>
+        </div>
+
+        <h2>FASE 1: Preparación (Macro VBA de Limpieza)</h2>
+        <p>El código a continuación arregla el problema de los contratos solapados en SAP y calcula los Días
+            equivalentes hacia atrás de forma milimetrada.</p>
+
+        <h3>Cómo instalar el motor</h3>
+        <ol>
+            <li>Crea un libro Excel "Herramienta_Calculo.xlsm".</li>
+            <li>Pega los datos extraídos de SAP en una pestaña llamada <code>Datos</code>.</li>
+            <li>Asegúrate de tener <strong>Fecha Ficticia de Inicio</strong> en <code>R1</code> y <strong>Fecha Ficticia
+                    Fin</strong> en <code>S1</code>.</li>
+            <li>Pega esta Macro V8.1 en un módulo.</li>
+        </ol>
+
+        <pre><code>Sub LGD_Splitter_v8()
+    Dim wsMaster As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    Dim StartPeriod As Date
+    Dim EndPeriod As Date
+    Dim cccCol As Long, pernrCol As Long, startCol As Long, endCol As Long
+    Dim grpCol As Long, daysCol As Long, udCol As Long
+    
+    ' [1] CONFIGURACIÓN INICIAL
+    Set wsMaster = ThisWorkbook.Sheets("Datos")
+    lastRow = wsMaster.Cells(wsMaster.Rows.Count, "A").End(xlUp).Row
+    
+    ' Leer fechas fiscales de R1 y S1 (Cambiarlas a las de tu mes)
+    StartPeriod = wsMaster.Cells(1, "R").Value
+    EndPeriod = wsMaster.Cells(1, "S").Value
+    
+    ' Mapeo de columnas (Ajustar si tu SAP es distinto)
+    pernrCol = 6   ' F: Nº pers.
+    startCol = 10  ' J: FeIniContr
+    endCol = 11    ' K: Baja Real
+    cccCol = 22    ' V: Soc.
+    grpCol = 15    ' O: Nueva columna Grupo
+    daysCol = 14   ' N: Nueva columna Días
+    udCol = 16     ' P: Nueva columna Unidades
+    
+    ' Títulos de las nuevas columnas
+    wsMaster.Cells(1, daysCol).Value = "Días"
+    wsMaster.Cells(1, grpCol).Value = "Grupo LGD"
+    wsMaster.Cells(1, udCol).Value = "Unidades"
+    
+    ' --------- CORE LOGIC V8.1: DICTIONARY BACKTRACKING ------------
+    ' Esta es la magia para evitar los solapamientos de SAP.
+    Dim dictBajas As Object
+    Set dictBajas = CreateObject("Scripting.Dictionary")
+    Dim currentPernr As String
+    Dim nextStartDate As Date
+    Dim effEnd As Date
+    Dim effStart As Date
+    
+    ' Leemos de Abajo hacia Arriba para heredar los "Dado de baja" reales
+    For i = lastRow To 2 Step -1
+        currentPernr = wsMaster.Cells(i, pernrCol).Text
+        
+        ' Si la celda dice "Dado de baja", guardamos esa fecha como límite para este empleado
+        Dim statusTxt As String
+        statusTxt = wsMaster.Cells(i, 13).Text ' M: Texto medida
+        
+        If InStr(1, UCase(statusTxt), "DADO DE BAJA") > 0 Or InStr(1, UCase(statusTxt), "BAJA") > 0 Then
+            Dim bajaDate As Date
+            bajaDate = wsMaster.Cells(i, endCol).Value
+            dictBajas(currentPernr) = bajaDate
+            
+            ' Como es registro puro de baja, no suma días en ese tramo
+            wsMaster.Cells(i, daysCol).Value = 0
+            
+        Else
+            ' Es un registro Activo. Calculamos su longitud real
+            If Not dictBajas.Exists(currentPernr) Then
+                effEnd = DateSerial(9999, 12, 31)
+            Else
+                effEnd = dictBajas(currentPernr)
+            End If
+            
+            effStart = wsMaster.Cells(i, startCol).Value
+            
+            ' Recorte Fiscal
+            If effStart < StartPeriod Then effStart = StartPeriod
+            If effEnd > EndPeriod Then effEnd = EndPeriod
+            
+            ' Cálculo de los días efectivos (Inclusivos)
+            Dim validDays As Long
+            validDays = DateDiff("d", effStart, effEnd) + 1
+            If validDays < 0 Then validDays = 0
+            
+            ' Anotar fijamente en Columnas N
+            wsMaster.Cells(i, daysCol).Value = validDays
+            
+            ' ---------- CLASIFICACIÓN TÉCNICA A/B ----------
+            Dim contratoType As String
+            contratoType = wsMaster.Cells(i, 17).Text ' Q: Clase Contr.
+            
+            Dim isGroupA As Boolean
+            isGroupA = False
+            
+            ' Fijos / Indefinidos: A
+            If InStr(1, UCase(contratoType), "100") > 0 Or InStr(1, UCase(contratoType), "200") > 0 Or InStr(1, UCase(contratoType), "300") > 0 Then
+                isGroupA = True
+            End If
+            
+            ' Análisis Días Brutos (Start Real vs End Real sin cortar por Fiscal)
+            Dim bruteDays As Long
+            bruteDays = DateDiff("d", wsMaster.Cells(i, startCol).Value, effEnd) + 1
+            If bruteDays > 365 Then isGroupA = True ' El Temporal se volvió largo
+            
+            If isGroupA Then
+                wsMaster.Cells(i, grpCol).Value = "Grupo A"
+                ' Criterio 98/2016: Promedio A = Días / 365
+                wsMaster.Cells(i, udCol).Value = Round(validDays / 365, 2)
+            Else
+                wsMaster.Cells(i, grpCol).Value = "Grupo B"
+                ' Criterio 98/2016: B = Sumatoria Días en el año (luego la web lo divide por 200 y redondea)
+                wsMaster.Cells(i, udCol).Value = validDays
+            End If
+            
+            ' ¡ESTA ES LA REPARACIÓN LÓGICA V8.1!
+            ' Pisamos la memoria para que la fila de arriba (contrato anterior) no pueda sobrepasar el día anterior a esto
+            dictBajas(currentPernr) = effStart - 1
+            
+        End If
+    Next i
+    
+    MsgBox "Lógica V8.1 Procesada: Base Limpia y Estática.", vbInformation
+End Sub
+</code></pre>
+
+        <h2>FASE 2: El Dashboard Web</h2>
+        <p>Una vez que el archivo ha limpiado el Excel con la Macro, puedes arrastrar la pestaña 'TOTAL' (La que unifica
+            todo) a la Herramienta Web.</p>
+
+        <ul>
+            <li><strong>Simulación Instantánea:</strong> La web leerá los Grupos A y B estáticos. El Grupo B se divide
+                entre 200 (redondeando siempre hacia arriba) calculando la cuota final del 2% real.</li>
+            <li><strong>Filtro por Excel:</strong> Puedes usar el desplegable para ir rotando por los CCC o por el
+                "Reporte Global" sin tener que salir ni hacer varias Macros.</li>
+            <li><strong>Medidas Alternativas:</strong> Puedes tildar la píldora para justificar excepciones y el
+                Dashboard se autocoloreará de Éxito en la Exportación PDF.</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+                Misión cumplida. La herramienta no dependerá jamás de arrastrar fórmulas en Excel que puedan romperse
+                con un mal click, su integridad ahora es matemática pura precalculada y unificada.
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
