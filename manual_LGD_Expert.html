@@ -4,339 +4,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual LGD Expert System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Manual de Usuario Integral - LGD 2%</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --secondary: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --bg-color: #f8fafc;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --card-bg: #ffffff;
             --border-color: #e2e8f0;
-            --success: #10b981;
-            --warning: #f59e0b;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
+            padding: 40px;
             max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px 50px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            margin: 0 auto;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
+        h1,
+        h2,
+        h3 {
+            color: #0f172a;
+            margin-top: 2rem;
         }
 
         h1 {
-            color: var(--primary);
             font-size: 2.2rem;
-            margin-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         h2 {
-            color: #334155;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 40px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #e0f2fe;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
         }
 
         h3 {
-            color: #475569;
-            margin-top: 25px;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
         }
 
-        p {
-            font-size: 1.05rem;
-        }
-
-        .btn-print {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
+        p,
+        li {
             font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .btn-print:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            margin-bottom: 15px;
         }
 
         .alert {
-            padding: 15px 20px;
-            border-radius: 8px;
+            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 6px;
             margin: 20px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
         }
 
-        .alert-warning {
-            background-color: #fef3c7;
-            border: 1px solid #fde68a;
-            color: #92400e;
+        .alert strong {
+            color: #b91c1c;
         }
 
-        .alert-success {
-            background-color: #d1fae5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
+        .tip {
+            background-color: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
         }
 
-        .alert i {
-            margin-top: 3px;
-            font-size: 1.2rem;
+        .tip strong {
+            color: #15803d;
         }
 
-        pre {
-            background-color: #1e293b;
-            color: #f8fafc;
+        .code-block {
+            background: #1e293b;
+            color: #cbd5e1;
             padding: 20px;
             border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
             overflow-x: auto;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            margin: 20px 0;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         code {
-            font-family: 'Consolas', 'Monaco', monospace;
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: monospace;
+            font-size: 0.9em;
         }
 
-        li {
-            margin-bottom: 10px;
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-
-            .container {
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-            }
-
-            .no-print {
-                display: none !important;
-            }
-
-            h1,
-            h2,
-            h3 {
-                page-break-after: avoid;
-            }
-
-            pre {
-                border: 1px solid #ccc;
-                background: #fff;
-                color: #000;
-                box-shadow: none;
-                page-break-inside: avoid;
-            }
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 40px 0;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <header>
-            <h1><i class="fa-solid fa-scale-balanced" style="margin-right: 15px;"></i>Manual de Experto: Cuota LGD 2%
-            </h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">Sistema Integrado de Análisis de Plantillas
-                (Criterio Técnico 98/2016)</p>
-            <button class="btn-print no-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir /
-                Guardar PDF</button>
-        </header>
+    <h1><i class="fa-solid fa-book-open"></i> Calculadora Cuota de Reserva 2% - Manual de Usuario Integral</h1>
+    <p>Este documento resume las funcionalidades, mejoras implementadas y sirve como guía paso a paso para cualquier
+        usuario que necesite entender cómo operar el ecosistema completo desde cero: desde la extracción de datos en SAP
+        mediante Excel/VBA hasta la visualización final en el Dashboard web.</p>
+    <hr>
 
-        <div class="alert alert-warning">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            <div>
-                <strong>Requisito Previo a la Herramienta Web</strong><br>
-                Antes de subir los datos al Dashboard web, es *crítico* sanear el bruto exportado por SAP. SAP genera
-                solapamientos en las fechas de los contratos cuando hay cambios de categoría que inflan la plantilla.
-                Este manual incluye la Macro VBA indispensable para limpiar esos datos.
-            </div>
-        </div>
+    <h2>🎯 1. Objetivo de la Herramienta</h2>
+    <p>El ecosistema está diseñado para automatizar el cálculo del cumplimiento de la <strong>Cuota de Reserva del 2% de
+            trabajadores con discapacidad</strong>, basándose estrictamente en el <strong>Criterio Técnico
+            98/2016</strong> de la Inspección de Trabajo.</p>
+    <p>Se divide en dos grandes fases:</p>
+    <ol>
+        <li><strong>Preparación de Datos (Excel/VBA):</strong> Extracción, limpieza y segregación masiva de sociedades
+            desde el volcado bruto de SAP.</li>
+        <li><strong>Dashboard Visual (Web):</strong> Ingestión del volcado finalizado y despliegue del panel de
+            resultados, desglose mensual y validación legal.</li>
+    </ol>
+    <hr>
 
-        <h2>FASE 1: Preparación (Macro VBA de Limpieza)</h2>
-        <p>El código a continuación arregla el problema de los contratos solapados en SAP y calcula los Días
-            equivalentes hacia atrás de forma milimetrada.</p>
+    <h2>🛠️ 2. Fase 1: Preparación Básica (SAP a Excel)</h2>
 
-        <h3>Cómo instalar el motor</h3>
-        <ol>
-            <li>Crea un libro Excel "Herramienta_Calculo.xlsm".</li>
-            <li>Pega los datos extraídos de SAP en una pestaña llamada <code>Datos</code>.</li>
-            <li>Asegúrate de tener <strong>Fecha Ficticia de Inicio</strong> en <code>R1</code> y <strong>Fecha Ficticia
-                    Fin</strong> en <code>S1</code>.</li>
-            <li>Pega esta Macro V8.1 en un módulo.</li>
-        </ol>
+    <div class="alert">
+        <strong>[!NOTE] Notas del Parche VBA: LGD Expert v8.0 (Overlap Hotfix)</strong><br>
+        <strong>[CRITICAL FIX] Días Duplicados:</strong> Se ha programado un motor de cálculo interno en la macro que
+        detecta cuando un trabajador (mismo DNI) encadena varios contratos sucesivos superpuestos ("Activo" múltiple).
+        Ahora la macro calcula los <em>días libres de solapamiento</em> y los imprime como un valor numérico fijo en la
+        columna, eliminando la necesidad de usar mega-fórmulas de Excel y evitando los falsos positivos por
+        sobre-conteo.
+    </div>
 
-        <pre><code>Sub LGD_Splitter_v8()
-    Dim wsMaster As Worksheet
-    Dim lastRow As Long
-    Dim i As Long
-    Dim StartPeriod As Date
-    Dim EndPeriod As Date
-    Dim cccCol As Long, pernrCol As Long, startCol As Long, endCol As Long
-    Dim grpCol As Long, daysCol As Long, udCol As Long
+    <h3>2.1 Preparación de la Hoja Maestra</h3>
+    <ol>
+        <li>Asegúrate de que tus datos de SAP extraídos ocupan de la columna <strong>A a la S</strong>.</li>
+        <li><strong>Fechas de Referencia:</strong> Coloca en <code>R1</code> el inicio del periodo (ej:
+            <code>01/02/2025</code>) y en <code>S1</code> el fin (ej: <code>31/01/2026</code>).</li>
+    </ol>
+
+    <h3>2.2 Macro Definitiva: <code>LGD_Splitter_v8</code></h3>
+    <p>Copia este código en tu editor VBA de Excel. Esta macro primero saneará matemáticamente los días de cada
+        trabajador (evitando fallos por saltos de SAP), calculará a qué grupo pertenecen, y luego separará
+        automáticamente el maestro en diferentes pestañas corporativas:</p>
+
+    <div class="code-block">
+        <pre>Sub DividirSociedades_LGD_v8()
+    Dim wsOrigen As Worksheet, wsNueva As Worksheet
+    Dim UltimaFila As Long, i As Long
+    Dim Diccionario As Object
+    Dim CodigoSoc As String, NombreHoja As String
+    Dim RangoA_S As Range
     
-    ' [1] CONFIGURACIÓN INICIAL
-    Set wsMaster = ThisWorkbook.Sheets("Datos")
-    lastRow = wsMaster.Cells(wsMaster.Rows.Count, "A").End(xlUp).Row
+    Dim FInicio As Date, FFin As Date, FRefInicio As Date, FRefFin As Date
+    Dim Dias As Long, Grupo As String
     
-    ' Leer fechas fiscales de R1 y S1 (Cambiarlas a las de tu mes)
-    StartPeriod = wsMaster.Cells(1, "R").Value
-    EndPeriod = wsMaster.Cells(1, "S").Value
+    Set wsOrigen = ActiveSheet
     
-    ' Mapeo de columnas (Ajustar si tu SAP es distinto)
-    pernrCol = 6   ' F: Nº pers.
-    startCol = 10  ' J: FeIniContr
-    endCol = 11    ' K: Baja Real
-    cccCol = 22    ' V: Soc.
-    grpCol = 15    ' O: Nueva columna Grupo
-    daysCol = 14   ' N: Nueva columna Días
-    udCol = 16     ' P: Nueva columna Unidades
+    ' Fechas de Referencia en R1 y S1 '
+    If Not IsDate(wsOrigen.Range("R1").Value) Or Not IsDate(wsOrigen.Range("S1").Value) Then
+        MsgBox "Faltan las fechas de inicio/fin en R1 y S1", vbCritical
+        Exit Sub
+    End If
     
-    ' Títulos de las nuevas columnas
-    wsMaster.Cells(1, daysCol).Value = "Días"
-    wsMaster.Cells(1, grpCol).Value = "Grupo LGD"
-    wsMaster.Cells(1, udCol).Value = "Unidades"
+    FRefInicio = wsOrigen.Range("R1").Value
+    FRefFin = wsOrigen.Range("S1").Value
     
-    ' --------- CORE LOGIC V8.1: DICTIONARY BACKTRACKING ------------
-    ' Esta es la magia para evitar los solapamientos de SAP.
-    Dim dictBajas As Object
-    Set dictBajas = CreateObject("Scripting.Dictionary")
-    Dim currentPernr As String
-    Dim nextStartDate As Date
-    Dim effEnd As Date
-    Dim effStart As Date
+    wsOrigen.AutoFilterMode = False
+    wsOrigen.Range("A:A").NumberFormat = "@"
     
-    ' Leemos de Abajo hacia Arriba para heredar los "Dado de baja" reales
-    For i = lastRow To 2 Step -1
-        currentPernr = wsMaster.Cells(i, pernrCol).Text
+    UltimaFila = wsOrigen.Cells(wsOrigen.Rows.Count, "A").End(xlUp).Row
+    
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    
+    ' --- FASE A: CÁLCULO DE DÍAS Y GRUPOS SIN SOLAPAMIENTO --- '
+    ' Recorremos de abajo arriba para rastrear bajas y segmentar sin duplicados
+    Dim DictBajas As Object
+    Set DictBajas = CreateObject("Scripting.Dictionary")
+    
+    For i = UltimaFila To 2 Step -1
+        Dim DNI As String
+        DNI = CStr(wsOrigen.Cells(i, 6).Value) ' Columna F (N.I.F)
         
-        ' Si la celda dice "Dado de baja", guardamos esa fecha como límite para este empleado
-        Dim statusTxt As String
-        statusTxt = wsMaster.Cells(i, 13).Text ' M: Texto medida
+        Dim Status As String
+        Status = Trim(wsOrigen.Cells(i, 13).Value) ' Columna M (Status ocupación)
         
-        If InStr(1, UCase(statusTxt), "DADO DE BAJA") > 0 Or InStr(1, UCase(statusTxt), "BAJA") > 0 Then
-            Dim bajaDate As Date
-            bajaDate = wsMaster.Cells(i, endCol).Value
-            dictBajas(currentPernr) = bajaDate
-            
-            ' Como es registro puro de baja, no suma días en ese tramo
-            wsMaster.Cells(i, daysCol).Value = 0
-            
+        Dim BajaReal As Date
+        
+        If UCase(Status) = "DADO DE BAJA" Or UCase(Status) = "BAJA" Or UCase(Status) = "INACTIVO" Then
+            ' Limpiaparabrisas de fecha: Un despido o cese marca el muro final '
+            If IsDate(wsOrigen.Cells(i, 9).Value) Then
+                DictBajas(DNI) = wsOrigen.Cells(i, 9).Value ' Columna I (Baja)
+            End If
+            wsOrigen.Cells(i, 14).Value = 0 ' Col N: 0 Días
+            wsOrigen.Cells(i, 15).Value = "Grupo B" ' Col O
+            wsOrigen.Cells(i, 16).Value = 0 ' Col P
         Else
-            ' Es un registro Activo. Calculamos su longitud real
-            If Not dictBajas.Exists(currentPernr) Then
-                effEnd = DateSerial(9999, 12, 31)
-            Else
-                effEnd = dictBajas(currentPernr)
+            ' Es empleado activo en SAP '
+            If IsDate(wsOrigen.Cells(i, 7).Value) Then
+                FInicio = wsOrigen.Cells(i, 7).Value ' Columna G (FeIniContr)
+                
+                ' ¿Teníamos una baja o inicio de contrato posterior registrado en la memoria? '
+                If DictBajas.Exists(DNI) Then
+                    BajaReal = DictBajas(DNI)
+                Else
+                    BajaReal = DateSerial(9999, 12, 31) ' Contrato vivo eterno '
+                End If
+                
+                ' Recortar por Periodo Lectivo '
+                Dim InicioAjustado As Date, FinAjustado As Date
+                InicioAjustado = FInicio
+                If InicioAjustado < FRefInicio Then InicioAjustado = FRefInicio
+                
+                FinAjustado = BajaReal
+                If FinAjustado > FRefFin Then FinAjustado = FRefFin
+                
+                If FinAjustado >= InicioAjustado Then
+                    Dias = DateDiff("d", InicioAjustado, FinAjustado) + 1
+                Else
+                    Dias = 0
+                End If
+                
+                ' Escribimos los días reales segmentados '
+                wsOrigen.Cells(i, 14).Value = Dias
+                
+                ' Clasificación de Grupo Legal '
+                Dim VidaLaboral As Long
+                VidaLaboral = DateDiff("d", wsOrigen.Cells(i, 7).Value, BajaReal)
+                
+                If wsOrigen.Cells(i, 8).Value = "" Or VidaLaboral > 365 Then ' Columna H vacía = Indefinido '
+                    wsOrigen.Cells(i, 15).Value = "Grupo A"
+                    wsOrigen.Cells(i, 16).Value = Round(Dias / 365, 3)
+                Else
+                    wsOrigen.Cells(i, 15).Value = "Grupo B"
+                    wsOrigen.Cells(i, 16).Value = Dias
+                End If
+                
+                ' EL GRAN TRUCO V8.1: Actualizamos la memoria '
+                ' Para la próxima fila que leamos por encima de nosotros, su tope nunca pasará del inicio de nuestro contrato actual '
+                DictBajas(DNI) = FInicio - 1
             End If
-            
-            effStart = wsMaster.Cells(i, startCol).Value
-            
-            ' Recorte Fiscal
-            If effStart < StartPeriod Then effStart = StartPeriod
-            If effEnd > EndPeriod Then effEnd = EndPeriod
-            
-            ' Cálculo de los días efectivos (Inclusivos)
-            Dim validDays As Long
-            validDays = DateDiff("d", effStart, effEnd) + 1
-            If validDays < 0 Then validDays = 0
-            
-            ' Anotar fijamente en Columnas N
-            wsMaster.Cells(i, daysCol).Value = validDays
-            
-            ' ---------- CLASIFICACIÓN TÉCNICA A/B ----------
-            Dim contratoType As String
-            contratoType = wsMaster.Cells(i, 17).Text ' Q: Clase Contr.
-            
-            Dim isGroupA As Boolean
-            isGroupA = False
-            
-            ' Fijos / Indefinidos: A
-            If InStr(1, UCase(contratoType), "100") > 0 Or InStr(1, UCase(contratoType), "200") > 0 Or InStr(1, UCase(contratoType), "300") > 0 Then
-                isGroupA = True
-            End If
-            
-            ' Análisis Días Brutos (Start Real vs End Real sin cortar por Fiscal)
-            Dim bruteDays As Long
-            bruteDays = DateDiff("d", wsMaster.Cells(i, startCol).Value, effEnd) + 1
-            If bruteDays > 365 Then isGroupA = True ' El Temporal se volvió largo
-            
-            If isGroupA Then
-                wsMaster.Cells(i, grpCol).Value = "Grupo A"
-                ' Criterio 98/2016: Promedio A = Días / 365
-                wsMaster.Cells(i, udCol).Value = Round(validDays / 365, 2)
-            Else
-                wsMaster.Cells(i, grpCol).Value = "Grupo B"
-                ' Criterio 98/2016: B = Sumatoria Días en el año (luego la web lo divide por 200 y redondea)
-                wsMaster.Cells(i, udCol).Value = validDays
-            End If
-            
-            ' ¡ESTA ES LA REPARACIÓN LÓGICA V8.1!
-            ' Pisamos la memoria para que la fila de arriba (contrato anterior) no pueda sobrepasar el día anterior a esto
-            dictBajas(currentPernr) = effStart - 1
-            
         End If
     Next i
     
-    MsgBox "Lógica V8.1 Procesada: Base Limpia y Estática.", vbInformation
-End Sub
-</code></pre>
-
-        <h2>FASE 2: El Dashboard Web</h2>
-        <p>Una vez que el archivo ha limpiado el Excel con la Macro, puedes arrastrar la pestaña 'TOTAL' (La que unifica
-            todo) a la Herramienta Web.</p>
-
-        <ul>
-            <li><strong>Simulación Instantánea:</strong> La web leerá los Grupos A y B estáticos. El Grupo B se divide
-                entre 200 (redondeando siempre hacia arriba) calculando la cuota final del 2% real.</li>
-            <li><strong>Filtro por Excel:</strong> Puedes usar el desplegable para ir rotando por los CCC o por el
-                "Reporte Global" sin tener que salir ni hacer varias Macros.</li>
-            <li><strong>Medidas Alternativas:</strong> Puedes tildar la píldora para justificar excepciones y el
-                Dashboard se autocoloreará de Éxito en la Exportación PDF.</li>
-        </ul>
-
-        <div class="alert alert-success mt-4">
-            <i class="fa-solid fa-check-circle"></i>
-            <div>
-                Misión cumplida. La herramienta no dependerá jamás de arrastrar fórmulas en Excel que puedan romperse
-                con un mal click, su integridad ahora es matemática pura precalculada y unificada.
-            </div>
-        </div>
+    ' --- FASE B: GENERACIÓN DE PESTAÑAS (V7.5 HOTFIX) --- '
+    Set RangoA_S = wsOrigen.Range("A1:S" & UltimaFila)
+    Set Diccionario = CreateObject("Scripting.Dictionary")
+    
+    For i = 2 To UltimaFila
+        CodigoSoc = Trim(wsOrigen.Cells(i, 1).Text)
+        
+        If CodigoSoc <> "" And Not Diccionario.Exists(CodigoSoc) Then
+            Diccionario.Add CodigoSoc, 1
+            NombreHoja = Left(Replace(Replace(CodigoSoc, "/", "_"), "*", ""), 31)
+            
+            On Error Resume Next
+            Sheets(NombreHoja).Delete
+            On Error GoTo 0
+            
+            Set wsNueva = Sheets.Add(After:=Sheets(Sheets.Count))
+            wsNueva.Name = NombreHoja
+            
+            wsOrigen.AutoFilterMode = False
+            RangoA_S.AutoFilter Field:=1, Criteria1:=CodigoSoc
+            
+            RangoA_S.SpecialCells(xlCellTypeVisible).Copy Destination:=wsNueva.Range("A1")
+            wsNueva.Columns.AutoFit
+        End If
+    Next i
+    
+    wsOrigen.AutoFilterMode = False
+    wsOrigen.Activate
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+    
+    MsgBox "LGD v8 (Overlap Core) completado." & vbCrLf & "Sociedades generadas: " & Diccionario.Count & vbCrLf & "Los datos han sido pre-calculados.", vbInformation
+End Sub</pre>
     </div>
+
+    <hr>
+
+    <h2>🖥️ 3. Fase 2: Ejecución del Dashboard Web</h2>
+
+    <h3>3.1 El Archivo de Origen en la Web</h3>
+    <p>El sistema web acepta el archivo global de SAP ya limpio. Buscará inteligentemente las columnas clave de tus
+        Excels:</p>
+    <ul>
+        <li><strong>Empresa / Sociedad:</strong> <code>Soc.</code>, <code>BUKRS</code>, <code>Empresa</code>,
+            <code>Sociedad ID</code>.</li>
+        <li><strong>Nombre de Empresa:</strong> <code>Sociedad</code>, <code>Denominación</code>,
+            <code>Nombre Empresa</code>.</li>
+        <li><strong>CCC (Centro de Trabajo):</strong> <code>CCC Emp</code>, <code>CCC</code>, <code>Centro</code>,
+            <code>C.C.C</code>.</li>
+        <li><strong>Nº Personal:</strong> <code>Pernr</code>, <code>Nº pers</code>, <code>Numero de personal</code>.
+        </li>
+        <li><strong>Fecha Inicial:</strong> <code>Begda</code>, <code>Inicio</code>, <code>Alta</code>,
+            <code>FeIniContr</code>.</li>
+        <li><strong>Fecha Final (Baja):</strong> <code>Baja</code>, <code>Endda</code>, <code>Fin</code>,
+            <code>Fecha de Baja</code>.</li>
+        <li><strong>Tipo de Contrato:</strong> <code>CTTYP</code>, <code>Tipo Contrato</code>, <code>Modalidad</code>,
+            <code>CC</code>.</li>
+    </ul>
+
+    <div class="tip">
+        <strong>[!TIP]</strong><br>
+        Si subes el Excel con las múltiples pestañas generadas en la Fase 1, el Dashboard unificará la data de manera
+        transparente.
+    </div>
+
+    <h3>3.2 Usando la Interfaz</h3>
+    <ol>
+        <li>Entra a la web "Calculadora Cuota Reserva 2%".</li>
+        <li><strong>Arrastra tu <code>.xlsx</code> o <code>.csv</code></strong> a la zona de subida interactiva.</li>
+        <li>El motor procesará miles de filas mostrando el panel KPI al instante.</li>
+        <li><strong>Selector de Empresa:</strong> Navega entre empresas extraídas dinámicamente o modifica el marco de
+            fechas general al recargar.</li>
+    </ol>
+
+    <hr>
+
+    <h2>⚙️ 4. Lógica Matemática Web (Criterio 98/2016)</h2>
+    <p>El Dashboard espeja fielmente la Ley:</p>
+    <ul>
+        <li><strong>🟢 Grupo A:</strong> Contabiliza días vivos anuales divididos entre 365. Quien trabaja todo el año
+            suma 1 entero.</li>
+        <li><strong>🟡 Grupo B:</strong> Haciendo <em>click</em> sobre esta tarjeta verás el desglose de trabajadores.
+            Se suman sus días prestados temporalmente en el año, dividiéndolos entre 200 y redondeando, aplicando un
+            cortafuegos para nunca exceder físicamente su número.</li>
+    </ul>
+    <p><strong>Suma Computable Legal:</strong> (Plantilla Grupo A) + (Plantilla Grupo B) = Base de obligación del 2%.
+    </p>
+
+    <hr>
+
+    <h2>🚀 5. Notas del Parche: Novedades del Dashboard Web</h2>
+    <ul>
+        <li><strong>✨ UI Premium ("Glassmorphism"):</strong> Fondos interactivos de cristal esmerilado, sombras suaves,
+            y paleta cromática profesional.</li>
+        <li><strong>📄 Extracción de Nombres Reales:</strong> El robot indexa los nombres de sociedad encriptados en SAP
+            para visualizarlos limpiamente.</li>
+        <li><strong>📈 Desglose Mensual por CCC:</strong> Tablas matriciales extrayendo la media física mes a mes
+            identificadas por prefijos provinciales.</li>
+        <li><strong>👥 Memoria Inteligente de Discapacitados:</strong> Input manual de trabajadores discapacitados que
+            persiste con total estanqueidad al rotar de empresa. Módulo Avanzado para imputar Altas.</li>
+        <li><strong>🤝 Cierre por Medidas Alternativas:</strong> Alertas visuales modulares y un <code>checkbox</code>
+            para forzar la validez de "Cumplimiento" aplicando Medidas Alternativas.</li>
+        <li><strong>🖨️ PDF Estructurado para Ejecutivos:</strong> Un botón transvalora temporalmente el diseño web
+            <em>glassmorphic</em> en una estructura fotográfica de bordes rígidos DINA4.</li>
+    </ul>
+
+    <hr>
+
+    <h2>🏗️ 6. Arquitectura de Despliegue (Distribución de la Herramienta)</h2>
+    <p>Para garantizar la distribución autónoma y segura del Dashboard Corporativo entre los usuarios sin pérdida de
+        dependencias:</p>
+
+    <h3>6.1 Despliegue Monolítico (<code>Calculadora_LGD_Standalone.html</code>)</h3>
+    <p>Durante el circuito de desarrollo se mantiene el modelo de triple fichero (HTML / CSS / JS). Sin embargo, para la
+        fase de cliente, hemos originado mediante PowerShell una variante denominada
+        <code>Calculadora_LGD_Standalone.html</code>.</p>
+    <p>Este archivo extrae los binarios de <code>style.css</code> y <code>script.js</code> y los incrusta directamente
+        en su propio <code>&lt;head&gt;</code>, conformando un ejecutable único.</p>
+    <ul>
+        <li><strong>Distribución:</strong> Enviar la herramienta implica mandar <em>únicamente</em> ese archivo.
+            Almacenaje Zero-Config.</li>
+    </ul>
+
+    <h3>6.2 Embebido Cloud: Centro de Documentación (GitHub Pages)</h3>
+    <p>El menú de Ayuda consta de 3 documentos visuales/legales. No se han incrustado en Base64 para no saturar el peso
+        de la página web. En su lugar:</p>
+    <ul>
+        <li>El proyecto se apoya en un hosting público permanente mediante <strong>GitHub Pages</strong>.</li>
+        <li>Los botones del popup están cableados interactivamente de manera <em>hardcoded</em> hacia Internet.</li>
+        <li><em>Se destruyeron los antiguos interceptores de Javascript locales del FileSystem dado que el enrutamiento
+                converge ya 100% online.</em></li>
+    </ul>
 
 </body>
 
