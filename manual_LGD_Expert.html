@@ -124,6 +124,16 @@
         mediante Excel/VBA hasta la visualización final en el Dashboard web.</p>
     <hr>
 
+    <div id="latest-patch-notes" class="tip" style="margin-top: -10px; margin-bottom: 30px;">
+        <strong>🚀 Actualización UX & Exportación (Feb 2026)</strong><br>
+        • <strong>Exportación PDF Inteligente:</strong> Ahora puedes exportar el Resumen Global y el Detalle de Sociedad
+        por separado. El sistema limpia la interfaz automáticamente para el PDF.<br>
+        • <strong>Reactividad Real-time:</strong> En la vista de detalle, el cumplimiento se recalcula al instante
+        mientras modificas el número de empleados con discapacidad.<br>
+        • <strong>Leyenda LGD:</strong> Nueva referencia visual integrada en el dashboard global para una lectura rápida
+        de estados.
+    </div>
+
     <h2>🎯 1. Objetivo de la Herramienta</h2>
     <p>El ecosistema está diseñado para automatizar el cálculo del cumplimiento de la <strong>Cuota de Reserva del 2% de
             trabajadores con discapacidad</strong>, basándose estrictamente en el <strong>Criterio Técnico
@@ -133,7 +143,7 @@
         <li><strong>Preparación de Datos (Excel/VBA):</strong> Extracción, limpieza y segregación masiva de sociedades
             desde el volcado bruto de SAP.</li>
         <li><strong>Dashboard Visual (Web):</strong> Ingestión del volcado finalizado y despliegue del panel de
-            resultados, desglose mensual y validación legal.</li>
+            resultados, desglose mensual y validación legal con <strong>interacción en tiempo real</strong>.</li>
     </ol>
     <hr>
 
@@ -152,7 +162,8 @@
     <ol>
         <li>Asegúrate de que tus datos de SAP extraídos ocupan de la columna <strong>A a la S</strong>.</li>
         <li><strong>Fechas de Referencia:</strong> Coloca en <code>R1</code> el inicio del periodo (ej:
-            <code>01/02/2025</code>) y en <code>S1</code> el fin (ej: <code>31/01/2026</code>).</li>
+            <code>01/02/2025</code>) y en <code>S1</code> el fin (ej: <code>31/01/2026</code>).
+        </li>
     </ol>
 
     <h3>2.2 Macro Definitiva: <code>LGD_Splitter_v8</code></h3>
@@ -304,19 +315,25 @@ End Sub</pre>
         Excels:</p>
     <ul>
         <li><strong>Empresa / Sociedad:</strong> <code>Soc.</code>, <code>BUKRS</code>, <code>Empresa</code>,
-            <code>Sociedad ID</code>.</li>
+            <code>Sociedad ID</code>.
+        </li>
         <li><strong>Nombre de Empresa:</strong> <code>Sociedad</code>, <code>Denominación</code>,
-            <code>Nombre Empresa</code>.</li>
+            <code>Nombre Empresa</code>.
+        </li>
         <li><strong>CCC (Centro de Trabajo):</strong> <code>CCC Emp</code>, <code>CCC</code>, <code>Centro</code>,
-            <code>C.C.C</code>.</li>
+            <code>C.C.C</code>.
+        </li>
         <li><strong>Nº Personal:</strong> <code>Pernr</code>, <code>Nº pers</code>, <code>Numero de personal</code>.
         </li>
         <li><strong>Fecha Inicial:</strong> <code>Begda</code>, <code>Inicio</code>, <code>Alta</code>,
-            <code>FeIniContr</code>.</li>
+            <code>FeIniContr</code>.
+        </li>
         <li><strong>Fecha Final (Baja):</strong> <code>Baja</code>, <code>Endda</code>, <code>Fin</code>,
-            <code>Fecha de Baja</code>.</li>
+            <code>Fecha de Baja</code>.
+        </li>
         <li><strong>Tipo de Contrato:</strong> <code>CTTYP</code>, <code>Tipo Contrato</code>, <code>Modalidad</code>,
-            <code>CC</code>.</li>
+            <code>CC</code>.
+        </li>
     </ul>
 
     <div class="tip">
@@ -350,20 +367,27 @@ End Sub</pre>
 
     <hr>
 
-    <h2>🚀 5. Notas del Parche: Novedades del Dashboard Web</h2>
+    <h2>🚀 5. Notas del Parche: Novedades UX & Reportes</h2>
     <ul>
-        <li><strong>✨ UI Premium ("Glassmorphism"):</strong> Fondos interactivos de cristal esmerilado, sombras suaves,
-            y paleta cromática profesional.</li>
-        <li><strong>📄 Extracción de Nombres Reales:</strong> El robot indexa los nombres de sociedad encriptados en SAP
-            para visualizarlos limpiamente.</li>
-        <li><strong>📈 Desglose Mensual por CCC:</strong> Tablas matriciales extrayendo la media física mes a mes
-            identificadas por prefijos provinciales.</li>
-        <li><strong>👥 Memoria Inteligente de Discapacitados:</strong> Input manual de trabajadores discapacitados que
-            persiste con total estanqueidad al rotar de empresa. Módulo Avanzado para imputar Altas.</li>
-        <li><strong>🤝 Cierre por Medidas Alternativas:</strong> Alertas visuales modulares y un <code>checkbox</code>
-            para forzar la validez de "Cumplimiento" aplicando Medidas Alternativas.</li>
-        <li><strong>🖨️ PDF Estructurado para Ejecutivos:</strong> Un botón transvalora temporalmente el diseño web
-            <em>glassmorphic</em> en una estructura fotográfica de bordes rígidos DINA4.</li>
+        <li><strong>✨ Core Reactivo Real-time:</strong> El Dashboard ahora es "vivo". Al ajustar manualmente el número
+            de discapacitados en el panel lateral, el badge de cumplimiento y las métricas anuales se recalculan
+            <strong>sin necesidad de pulsar "Aplicar"</strong>.</li>
+        <li><strong>📑 Exportación Segmentada por Vista:</strong> Hemos separado los botones de PDF.
+            <ul>
+                <li><strong>PDF Global:</strong> Captura la parrilla de todas las empresas con su leyenda
+                    correspondiente.</li>
+                <li><strong>PDF Detalle:</strong> Captura el desglose técnico, los KPIs y las tablas del mes a mes de la
+                    empresa seleccionada.</li>
+            </ul>
+        </li>
+        <li><strong>🖼️ Diseño Premium Compacto:</strong> Las tarjetas de empresa han evolucionado a un formato
+            horizontal más denso, eliminando códigos numéricos innecesarios y potenciando la iconografía de cumplimiento
+            (70% más grande).</li>
+        <li><strong>⚖️ Leyenda Informativa LGD:</strong> Inclusión de una guía visual rápida en la cabecera global para
+            interpretar los iconos de cumplimiento (Cumple, Medidas Alt., Parcial, Incumple, Exento).</li>
+        <li><strong>🖨️ Estética de Reporte Limpio:</strong> Al generar el PDF, el sistema detecta y oculta
+            automáticamente selectores de periodo, botones de ayuda y inputs de configuración para entregar un documento
+            profesional.</li>
     </ul>
 
     <hr>
@@ -375,7 +399,8 @@ End Sub</pre>
     <h3>6.1 Despliegue Monolítico (<code>Calculadora_LGD_Standalone.html</code>)</h3>
     <p>Durante el circuito de desarrollo se mantiene el modelo de triple fichero (HTML / CSS / JS). Sin embargo, para la
         fase de cliente, hemos originado mediante PowerShell una variante denominada
-        <code>Calculadora_LGD_Standalone.html</code>.</p>
+        <code>Calculadora_LGD_Standalone.html</code>.
+    </p>
     <p>Este archivo extrae los binarios de <code>style.css</code> y <code>script.js</code> y los incrusta directamente
         en su propio <code>&lt;head&gt;</code>, conformando un ejecutable único.</p>
     <ul>
