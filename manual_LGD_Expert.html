@@ -371,7 +371,8 @@ End Sub</pre>
     <ul>
         <li><strong>✨ Core Reactivo Real-time:</strong> El Dashboard ahora es "vivo". Al ajustar manualmente el número
             de discapacitados en el panel lateral, el badge de cumplimiento y las métricas anuales se recalculan
-            <strong>sin necesidad de pulsar "Aplicar"</strong>.</li>
+            <strong>sin necesidad de pulsar "Aplicar"</strong>.
+        </li>
         <li><strong>📑 Exportación Segmentada por Vista:</strong> Hemos separado los botones de PDF.
             <ul>
                 <li><strong>PDF Global:</strong> Captura la parrilla de todas las empresas con su leyenda
@@ -416,6 +417,33 @@ End Sub</pre>
         <li>Los botones del popup están cableados interactivamente de manera <em>hardcoded</em> hacia Internet.</li>
         <li><em>Se destruyeron los antiguos interceptores de Javascript locales del FileSystem dado que el enrutamiento
                 converge ya 100% online.</em></li>
+    </ul>
+
+    <hr>
+
+    <h2>🔒 7. Privacidad y Seguridad de Datos</h2>
+    <p>Dada la sensibilidad de los datos de personal (NIF, Pernr, etc.), la herramienta ha sido diseñada bajo el
+        principio de <strong>"Zero-Server Processing"</strong>:</p>
+    <div class="tip">
+        • <strong>Tratamiento 100% Local:</strong> Tus archivos Excel nunca suben a la nube ni a ningún servidor
+        externo. El procesamiento ocurre exclusivamente en la memoria de tu navegador.<br>
+        • <strong>Sin Base de Datos:</strong> Al cerrar la pestaña o refrescar (F5), los datos se borran por completo.
+        Nada queda almacenado permanentemente fuera de tus archivos originales.<br>
+        • <strong>Seguridad Estática:</strong> Al ser un archivo HTML autónomo, no tiene vulnerabilidades de backend ni
+        requiere conexiones a bases de datos corporativas.
+    </div>
+
+    <hr>
+
+    <h2>⌨️ 8. Atajos de Teclado y Tips de Uso</h2>
+    <ul>
+        <li><strong>Cerrar Ventanas (ESC):</strong> Pulsa la tecla <code>Escape</code> en cualquier momento para cerrar
+            los menús de ayuda, gestión de discapacitados o desgloses mensuales.</li>
+        <li><strong>Navegación Fluida:</strong> Usa el selector de empresa para rotar entre resultados. Los datos de
+            "Trabajadores Discapacidad" que introduzcas se mantendrán guardados para cada empresa mientras no cierres la
+            herramienta.</li>
+        <li><strong>Tooltips Informativos:</strong> Pasa el ratón sobre los iconos <code>(i)</code> en los KPIs para
+            leer aclaraciones legales sobre qué se está sumando exactamente.</li>
     </ul>
 
 </body>
