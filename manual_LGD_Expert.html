@@ -125,13 +125,15 @@
     <hr>
 
     <div id="latest-patch-notes" class="tip" style="margin-top: -10px; margin-bottom: 30px;">
-        <strong>🚀 Actualización UX & Exportación (Feb 2026)</strong><br>
-        • <strong>Exportación PDF Inteligente:</strong> Ahora puedes exportar el Resumen Global y el Detalle de Sociedad
-        por separado. El sistema limpia la interfaz automáticamente para el PDF.<br>
-        • <strong>Reactividad Real-time:</strong> En la vista de detalle, el cumplimiento se recalcula al instante
-        mientras modificas el número de empleados con discapacidad.<br>
-        • <strong>Leyenda LGD:</strong> Nueva referencia visual integrada en el dashboard global para una lectura rápida
-        de estados.
+        <strong>🚀 Actualización UX & Flujo Dual Opcional (Feb 2026)</strong><br>
+        • <strong>Doble Zona de Carga:</strong> Ahora puedes subir un archivo específico de Personal con Discapacidad
+        antes del archivo SAP principal. Los datos se cruzarán automáticamente, eliminando la necesidad de introducción
+        manual.<br>
+        • <strong>Dashboard Visual Premium:</strong> Las tarjetas de estado en la vista Global ya no tienen recuadros
+        numéricos manuales; en su lugar, muestran suaves degradados pastel y resplandores (glow) en hover según su
+        estado (Cumple, Incumple, Parcial).<br>
+        • <strong>Exportación PDF Inteligente:</strong> Puedes exportar el Resumen Global y el Detalle de Sociedad por
+        separado. El sistema limpia la interfaz automáticamente para un PDF perfecto.<br>
     </div>
 
     <h2>🎯 1. Objetivo de la Herramienta</h2>
@@ -342,13 +344,20 @@ End Sub</pre>
         transparente.
     </div>
 
-    <h3>3.2 Usando la Interfaz</h3>
+    <h3>3.2 Usando la Interfaz (Flujo de Carga Dual Opcional)</h3>
     <ol>
         <li>Entra a la web "Calculadora Cuota Reserva 2%".</li>
-        <li><strong>Arrastra tu <code>.xlsx</code> o <code>.csv</code></strong> a la zona de subida interactiva.</li>
-        <li>El motor procesará miles de filas mostrando el panel KPI al instante.</li>
-        <li><strong>Selector de Empresa:</strong> Navega entre empresas extraídas dinámicamente o modifica el marco de
-            fechas general al recargar.</li>
+        <li><strong>(Opcional) Paso 1: Discapacitados.</strong> Arrastra a la zona delimitada tu Excel exclusivo de
+            <code>Personal con Discapacidad</code>. El motor buscará inteligentemente columnas de nombre genérico como
+            <em>'Sociedad', 'Fe.antig.', 'Baja' o 'CCC emp.'</em> y almacenará automáticamente su vigencia sin
+            preocuparse por la limpieza inicial del archivo o si sobran hojas.</li>
+        <li><strong>Paso 2: Datos SAP.</strong> Arrastra tu volcado maestro general <code>.xlsx</code> o
+            <code>.csv</code> (de la Fase 1) a la zona principal (en azul).</li>
+        <li>El motor procesará miles de filas cruzándolas en segundo plano con la memoria del archivo de discapacitados
+            (si lo subiste), mostrando el panel KPI global automatizado al instante.</li>
+        <li><strong>Selector de Empresa:</strong> Navega entre empresas extraídas dinámicamente o usa el panel "Detalle
+            Sociedad". El recálculo y la sincronización es 100% bidireccional si deseas modificar un valor manualmente
+            en el "Modo Avanzado".</li>
     </ol>
 
     <hr>
@@ -369,25 +378,26 @@ End Sub</pre>
 
     <h2>🚀 5. Notas del Parche: Novedades UX & Reportes</h2>
     <ul>
-        <li><strong>✨ Core Reactivo Real-time:</strong> El Dashboard ahora es "vivo". Al ajustar manualmente el número
-            de discapacitados en el panel lateral, el badge de cumplimiento y las métricas anuales se recalculan
-            <strong>sin necesidad de pulsar "Aplicar"</strong>.
+        <li><strong>✨ Automatización por Cruce Lógico:</strong> Al ingerir dos archivos paralelos (Discapacitados y
+            Datos SAP), el motor ya no requiere rellenar métricas manuales de cumplimiento, las genera internamente.
         </li>
+        <li><strong>🖼️ Mosaico Premium Multicliente:</strong> El "Resumen Global" centraliza a vista de pájaro todo el
+            estado del cliente multicompañía. Las tarjetas <em>Glassmorphism</em> han sustituido los gruesos bordes
+            sólidos y los inputs manuales por suaves difuminados y un elegante resplandor de luz al pasar el cursor para
+            denotar si Cumple (Verde) o Incumple (Rojo).</li>
         <li><strong>📑 Exportación Segmentada por Vista:</strong> Hemos separado los botones de PDF.
             <ul>
                 <li><strong>PDF Global:</strong> Captura la parrilla de todas las empresas con su leyenda
-                    correspondiente.</li>
+                    correspondiente y colores pastel translúcidos de fondo.</li>
                 <li><strong>PDF Detalle:</strong> Captura el desglose técnico, los KPIs y las tablas del mes a mes de la
                     empresa seleccionada.</li>
             </ul>
         </li>
-        <li><strong>🖼️ Diseño Premium Compacto:</strong> Las tarjetas de empresa han evolucionado a un formato
-            horizontal más denso, eliminando códigos numéricos innecesarios y potenciando la iconografía de cumplimiento
-            (70% más grande).</li>
-        <li><strong>⚖️ Leyenda Informativa LGD:</strong> Inclusión de una guía visual rápida en la cabecera global para
-            interpretar los iconos de cumplimiento (Cumple, Medidas Alt., Parcial, Incumple, Exento).</li>
+        <li><strong>⚖️ Leyenda y Filtros Multi-Select:</strong> Puedes pulsar en los iconos de la leyenda de la cabecera
+            (🟢 CUMPLE, 🔴 INCUMPLE...) para filtrar visualmente las tarjetas en el Resumen Global de manera
+            instantánea.</li>
         <li><strong>🖨️ Estética de Reporte Limpio:</strong> Al generar el PDF, el sistema detecta y oculta
-            automáticamente selectores de periodo, botones de ayuda y inputs de configuración para entregar un documento
+            automáticamente selectores de periodo, botones de ayuda e inputs de configuración para entregar un documento
             profesional.</li>
     </ul>
 
