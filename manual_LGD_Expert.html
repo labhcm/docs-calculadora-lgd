@@ -152,159 +152,273 @@
     <h2>🛠️ 2. Fase 1: Preparación Básica (SAP a Excel)</h2>
 
     <div class="alert">
-        <strong>[!NOTE] Notas del Parche VBA: LGD Expert v8.0 (Overlap Hotfix)</strong><br>
-        <strong>[CRITICAL FIX] Días Duplicados:</strong> Se ha programado un motor de cálculo interno en la macro que
-        detecta cuando un trabajador (mismo DNI) encadena varios contratos sucesivos superpuestos ("Activo" múltiple).
-        Ahora la macro calcula los <em>días libres de solapamiento</em> y los imprime como un valor numérico fijo en la
-        columna, eliminando la necesidad de usar mega-fórmulas de Excel y evitando los falsos positivos por
-        sobre-conteo.
+        <strong>[!NOTE] Notas de la Versión Definitiva: LGD Expert v9.0 (Motor Completo)</strong><br>
+        <strong>[CRITICAL FIX] Días Duplicados y Tramos Complejos:</strong> El sistema ahora calcula con precisión los
+        <em>días libres de solapamiento</em> analizando el histórico de altas y bajas por empleado (Nº personal en lugar
+        de NIF para evitar colisiones). Clasifica automáticamente en "Grupo A" (contratos de &gt;365 días o indefinidos)
+        o "Grupo B" (resto), e ignora correctamente las fechas centinelas (ej. 31/12/9999).
     </div>
 
     <h3>2.1 Preparación de la Hoja Maestra</h3>
     <ol>
         <li>Asegúrate de que tus datos de SAP extraídos ocupan de la columna <strong>A a la S</strong>.</li>
         <li><strong>Fechas de Referencia:</strong> Coloca en <code>R1</code> el inicio del periodo (ej:
-            <code>01/02/2025</code>) y en <code>S1</code> el fin (ej: <code>31/01/2026</code>).
+            <code>01/03/2025</code>) y en <code>S1</code> el fin (ej: <code>28/02/2026</code>).
         </li>
     </ol>
 
-    <h3>2.2 Macro Definitiva: <code>LGD_Splitter_v8</code></h3>
-    <p>Copia este código en tu editor VBA de Excel. Esta macro primero saneará matemáticamente los días de cada
-        trabajador (evitando fallos por saltos de SAP), calculará a qué grupo pertenecen, y luego separará
-        automáticamente el maestro en diferentes pestañas corporativas:</p>
+    <h3>2.2 Opción A: Fórmulas de Excel (Cálculo Manual)</h3>
+    <p>Si necesitas depurar los cálculos en el propio Excel sin usar la macro de VBA, el motor está replicado mediante
+        las siguientes fórmulas a incluir en columnas libres (asumiendo datos en la fila 2):</p>
+    <ul>
+        <li><strong>1. Baja Efectiva (Ignorar solapamientos y fechas 9999):</strong><br>
+            <code>=MIN.SI.CONJUNTO($I:$I; $D:$D; $D2; $I:$I; "&gt;="&amp;$G2; $I:$I; "&lt;"&amp;2958465; $I:$I; "&gt;0")</code><br>
+            <em>(Devuelve la baja real buscando el Nº de personal en la columna D y omitiendo altas futuras y la fecha
+                técnica 31.12.9999 de SAP - valor serial 2958465).</em>
+        </li>
+        <li><strong>2. Días vivos en el Periodo (Columna N):</strong><br>
+            <code>=SI(ESPACIOS($M2)="DADO DE BAJA"; 0; MAX(0; MIN([Celda BajaEfectiva]; $S$1) - MAX($G2; $R$1) + 1))</code>
+        </li>
+        <li><strong>3. Clasificación de Grupo (Columna O):</strong><br>
+            <em>Contratos indefinidos o temporales que duren más de 365 días (teniendo en cuenta col L para determinar
+                tipo de contrato) pasan a Grupo A. El resto es Grupo B.</em>
+        </li>
+        <li><strong>4. Factor Computable Final (Columna P):</strong><br>
+            <code>=SI(O2="Grupo A"; N2/365; N2)</code>
+        </li>
+    </ul>
+
+    <h3>2.3 Opción B: Ejecución Automática (Macro LGD_Splitter_v9)</h3>
+    <p>Esta macro es la vía oficial y agrupa todos los cálculos matemáticos prescindiendo de colgar tu Excel con miles
+        de fórmulas complejas. Aplica la lógica exacta de la Ley y, finalmente, divide la matriz originando tantas
+        pestañas separadas como Sociedades tengas:</p>
 
     <div class="code-block">
-        <pre>Sub DividirSociedades_LGD_v8()
+        <pre>Sub DividirSociedades_LGD_v9()
+
     Dim wsOrigen As Worksheet, wsNueva As Worksheet
     Dim UltimaFila As Long, i As Long
     Dim Diccionario As Object
     Dim CodigoSoc As String, NombreHoja As String
     Dim RangoA_S As Range
-    
-    Dim FInicio As Date, FFin As Date, FRefInicio As Date, FRefFin As Date
-    Dim Dias As Long, Grupo As String
-    
+
+    Dim FInicio As Date, FRefInicio As Date, FRefFin As Date
+    Dim Dias As Long
+
     Set wsOrigen = ActiveSheet
-    
-    ' Fechas de Referencia en R1 y S1 '
+
+    ' --- VALIDACIÓN FECHAS R1 / S1 ---
     If Not IsDate(wsOrigen.Range("R1").Value) Or Not IsDate(wsOrigen.Range("S1").Value) Then
         MsgBox "Faltan las fechas de inicio/fin en R1 y S1", vbCritical
         Exit Sub
     End If
-    
+
     FRefInicio = wsOrigen.Range("R1").Value
-    FRefFin = wsOrigen.Range("S1").Value
-    
+    FRefFin    = wsOrigen.Range("S1").Value
+
     wsOrigen.AutoFilterMode = False
     wsOrigen.Range("A:A").NumberFormat = "@"
-    
+
     UltimaFila = wsOrigen.Cells(wsOrigen.Rows.Count, "A").End(xlUp).Row
-    
+
     Application.ScreenUpdating = False
-    Application.DisplayAlerts = False
-    
-    ' --- FASE A: CÁLCULO DE DÍAS Y GRUPOS SIN SOLAPAMIENTO --- '
-    ' Recorremos de abajo arriba para rastrear bajas y segmentar sin duplicados
+    Application.DisplayAlerts  = False
+
+    ' ═══════════════════════════════════════════════════════
+    ' FASE A: CÁLCULO DE DÍAS Y GRUPOS
+    '   Clave: Nº pers. (col D) — no NIF (col F)
+    ' ═══════════════════════════════════════════════════════
+
     Dim DictBajas As Object
     Set DictBajas = CreateObject("Scripting.Dictionary")
-    
+
     For i = UltimaFila To 2 Step -1
-        Dim DNI As String
-        DNI = CStr(wsOrigen.Cells(i, 6).Value) ' Columna F (N.I.F)
-        
+
+        ' Clave = Nº pers. (col D)
+        Dim NpersD As String
+        NpersD = CStr(wsOrigen.Cells(i, 4).Value)
+
         Dim Status As String
-        Status = Trim(wsOrigen.Cells(i, 13).Value) ' Columna M (Status ocupación)
-        
-        Dim BajaReal As Date
-        
-        If UCase(Status) = "DADO DE BAJA" Or UCase(Status) = "BAJA" Or UCase(Status) = "INACTIVO" Then
-            ' Limpiaparabrisas de fecha: Un despido o cese marca el muro final '
-            If IsDate(wsOrigen.Cells(i, 9).Value) Then
-                DictBajas(DNI) = wsOrigen.Cells(i, 9).Value ' Columna I (Baja)
+        Status = Trim(wsOrigen.Cells(i, 13).Value)   ' col M
+
+        ' ── EMPLEADO DADO DE BAJA ──
+        If UCase(Status) = "DADO DE BAJA" Or UCase(Status) = "INACTIVO" Then
+
+            ' Ignorar fecha sentinel 31/12/9999 (serial 2958465)
+            Dim BajaRaw As Variant
+            BajaRaw = wsOrigen.Cells(i, 9).Value2
+
+            If IsDate(wsOrigen.Cells(i, 9).Value) _
+               And IsNumeric(BajaRaw) _
+               And BajaRaw > 0 _
+               And BajaRaw < 2958465 Then
+                DictBajas(NpersD) = wsOrigen.Cells(i, 9).Value
             End If
-            wsOrigen.Cells(i, 14).Value = 0 ' Col N: 0 Días
-            wsOrigen.Cells(i, 15).Value = "Grupo B" ' Col O
-            wsOrigen.Cells(i, 16).Value = 0 ' Col P
-        Else
-            ' Es empleado activo en SAP '
-            If IsDate(wsOrigen.Cells(i, 7).Value) Then
-                FInicio = wsOrigen.Cells(i, 7).Value ' Columna G (FeIniContr)
-                
-                ' ¿Teníamos una baja o inicio de contrato posterior registrado en la memoria? '
-                If DictBajas.Exists(DNI) Then
-                    BajaReal = DictBajas(DNI)
+
+            wsOrigen.Cells(i, 14).Value = 0           ' N = 0
+            wsOrigen.Cells(i, 15).Value = "Grupo B"   ' O
+            wsOrigen.Cells(i, 16).Value = 0           ' P = 0
+
+        ' ── EMPLEADO ACTIVO ──
+        ElseIf UCase(Status) = "ACTIVO" Then
+
+            If IsDate(wsOrigen.Cells(i, 7).Value) Then   ' col G
+
+                FInicio = wsOrigen.Cells(i, 7).Value
+
+                ' Fecha de baja efectiva para este Nº pers.
+                Dim BajaReal As Date
+                If DictBajas.Exists(NpersD) Then
+                    BajaReal = DictBajas(NpersD)
+                    If BajaReal < FInicio Then BajaReal = DateSerial(9999, 12, 31)
                 Else
-                    BajaReal = DateSerial(9999, 12, 31) ' Contrato vivo eterno '
+                    BajaReal = DateSerial(9999, 12, 31)
                 End If
-                
-                ' Recortar por Periodo Lectivo '
+
+                ' Recorte al periodo de referencia
                 Dim InicioAjustado As Date, FinAjustado As Date
                 InicioAjustado = FInicio
                 If InicioAjustado < FRefInicio Then InicioAjustado = FRefInicio
-                
+
                 FinAjustado = BajaReal
                 If FinAjustado > FRefFin Then FinAjustado = FRefFin
-                
+
+                ' Columna N — días activos en el periodo
                 If FinAjustado >= InicioAjustado Then
                     Dias = DateDiff("d", InicioAjustado, FinAjustado) + 1
                 Else
                     Dias = 0
                 End If
-                
-                ' Escribimos los días reales segmentados '
                 wsOrigen.Cells(i, 14).Value = Dias
-                
-                ' Clasificación de Grupo Legal '
-                Dim VidaLaboral As Long
-                VidaLaboral = DateDiff("d", wsOrigen.Cells(i, 7).Value, BajaReal)
-                
-                If wsOrigen.Cells(i, 8).Value = "" Or VidaLaboral > 365 Then ' Columna H vacía = Indefinido '
+
+                ' ── Columna O — Grupo ──
+                Const H_SENTINEL As Long = 365000
+
+                Dim TipoContrato As String
+                TipoContrato = Trim(wsOrigen.Cells(i, 12).Value)  ' col L
+
+                Dim EsTemporal As Boolean
+                EsTemporal = (InStr(1, TipoContrato, "Dur.temp", vbTextCompare) > 0 Or _
+                              InStr(1, TipoContrato, "Duración determinada", vbTextCompare) > 0 Or _
+                              InStr(1, TipoContrato, "Temporal.", vbTextCompare) > 0)
+
+                Dim FechaHraw As Variant
+                FechaHraw = wsOrigen.Cells(i, 8).Value2  ' col H numérico
+
+                Dim EsGrupoA As Boolean
+                If EsTemporal Then
+                    If IsNumeric(FechaHraw) And FechaHraw > 0 And FechaHraw < H_SENTINEL Then
+                        EsGrupoA = (DateDiff("d", FInicio, CDate(wsOrigen.Cells(i, 8).Value)) > 365)
+                    Else
+                        EsGrupoA = (DateDiff("d", FInicio, FRefFin) > 365)
+                    End If
+                Else
+                    If IsEmpty(wsOrigen.Cells(i, 8).Value) Or FechaHraw = 0 Or FechaHraw = "" Then
+                        EsGrupoA = True
+                    ElseIf IsDate(wsOrigen.Cells(i, 8).Value) Then
+                        EsGrupoA = (DateDiff("d", FInicio, CDate(wsOrigen.Cells(i, 8).Value)) > 365)
+                    Else
+                        EsGrupoA = True
+                    End If
+                End If
+
+                ' ── Columna P — Unidades ──
+                If EsGrupoA Then
                     wsOrigen.Cells(i, 15).Value = "Grupo A"
                     wsOrigen.Cells(i, 16).Value = Round(Dias / 365, 3)
                 Else
                     wsOrigen.Cells(i, 15).Value = "Grupo B"
                     wsOrigen.Cells(i, 16).Value = Dias
                 End If
-                
-                ' EL GRAN TRUCO V8.1: Actualizamos la memoria '
-                ' Para la próxima fila que leamos por encima de nosotros, su tope nunca pasará del inicio de nuestro contrato actual '
-                DictBajas(DNI) = FInicio - 1
+
+                ' Memoria temporal
+                DictBajas(NpersD) = FInicio - 1
+
             End If
         End If
+
     Next i
-    
-    ' --- FASE B: GENERACIÓN DE PESTAÑAS (V7.5 HOTFIX) --- '
+
+    ' ═══════════════════════════════════════════════════════
+    ' FASE B: GENERACIÓN DE PESTAÑAS POR SOCIEDAD
+    ' ═══════════════════════════════════════════════════════
+
     Set RangoA_S = wsOrigen.Range("A1:S" & UltimaFila)
     Set Diccionario = CreateObject("Scripting.Dictionary")
-    
+
     For i = 2 To UltimaFila
+
         CodigoSoc = Trim(wsOrigen.Cells(i, 1).Text)
-        
+
         If CodigoSoc <> "" And Not Diccionario.Exists(CodigoSoc) Then
+
             Diccionario.Add CodigoSoc, 1
             NombreHoja = Left(Replace(Replace(CodigoSoc, "/", "_"), "*", ""), 31)
-            
+
             On Error Resume Next
             Sheets(NombreHoja).Delete
             On Error GoTo 0
-            
+
             Set wsNueva = Sheets.Add(After:=Sheets(Sheets.Count))
             wsNueva.Name = NombreHoja
-            
+
             wsOrigen.AutoFilterMode = False
             RangoA_S.AutoFilter Field:=1, Criteria1:=CodigoSoc
-            
+
             RangoA_S.SpecialCells(xlCellTypeVisible).Copy Destination:=wsNueva.Range("A1")
             wsNueva.Columns.AutoFit
+
         End If
+
     Next i
-    
+
     wsOrigen.AutoFilterMode = False
-    wsOrigen.Activate
+
+    ' ═══════════════════════════════════════════════════════
+    ' FASE C: ORDENAR HOJAS NUMÉRICAMENTE
+    ' ═══════════════════════════════════════════════════════
+
+    Dim hojas() As Variant
+    Dim idx As Long, j As Long, k As Long
+    Dim temp As Variant
+
+    ReDim hojas(1 To Diccionario.Count)
+    idx = 1
+
+    Dim key As Variant
+    For Each key In Diccionario.Keys
+        If IsNumeric(key) Then
+            hojas(idx) = CDbl(key)
+            idx = idx + 1
+        End If
+    Next key
+
+    For j = LBound(hojas) To UBound(hojas) - 1
+        For k = j + 1 To UBound(hojas)
+            If hojas(j) > hojas(k) Then
+                temp = hojas(j) : hojas(j) = hojas(k) : hojas(k) = temp
+            End If
+        Next k
+    Next j
+
+    For j = LBound(hojas) To UBound(hojas)
+        If hojas(j) <> 0 Then
+            On Error Resume Next
+            Sheets(CStr(hojas(j))).Move After:=wsOrigen
+            Set wsOrigen = Sheets(CStr(hojas(j)))
+            On Error GoTo 0
+        End If
+    Next j
+
+    Sheets(1).Activate
+
     Application.ScreenUpdating = True
-    Application.DisplayAlerts = True
-    
-    MsgBox "LGD v8 (Overlap Core) completado." & vbCrLf & "Sociedades generadas: " & Diccionario.Count & vbCrLf & "Los datos han sido pre-calculados.", vbInformation
+    Application.DisplayAlerts  = True
+
+    MsgBox "LGD v9 completado." & vbCrLf & _
+           "Sociedades generadas: " & Diccionario.Count & vbCrLf & _
+           "Las pestañas han sido ordenadas y pre-calculadas.", vbInformation
+
 End Sub</pre>
     </div>
 
@@ -350,9 +464,11 @@ End Sub</pre>
         <li><strong>(Opcional) Paso 1: Discapacitados.</strong> Arrastra a la zona delimitada tu Excel exclusivo de
             <code>Personal con Discapacidad</code>. El motor buscará inteligentemente columnas de nombre genérico como
             <em>'Sociedad', 'Fe.antig.', 'Baja' o 'CCC emp.'</em> y almacenará automáticamente su vigencia sin
-            preocuparse por la limpieza inicial del archivo o si sobran hojas.</li>
+            preocuparse por la limpieza inicial del archivo o si sobran hojas.
+        </li>
         <li><strong>Paso 2: Datos SAP.</strong> Arrastra tu volcado maestro general <code>.xlsx</code> o
-            <code>.csv</code> (de la Fase 1) a la zona principal (en azul).</li>
+            <code>.csv</code> (de la Fase 1) a la zona principal (en azul).
+        </li>
         <li>El motor procesará miles de filas cruzándolas en segundo plano con la memoria del archivo de discapacitados
             (si lo subiste), mostrando el panel KPI global automatizado al instante.</li>
         <li><strong>Selector de Empresa:</strong> Navega entre empresas extraídas dinámicamente o usa el panel "Detalle
