@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -138,105 +138,107 @@
 <body>
 
     <h1><i class="fa-solid fa-book-open"></i> Sistema Global LGD 2% - Manual del Proyecto</h1>
-    <p>Este documento es la guía oficial para entender y operar el ecosistema de validación de la <strong>Cuota de
-            Reserva del 2% de trabajadores con discapacidad</strong>. Está diseñado para que cualquier analista, sin
-        importar su experiencia previa, pueda procesar los datos masivos de SAP y obtener los KPIs legales de auditoría.
+    <p>Este documento es la guÃ­a oficial para entender y operar el ecosistema de validaciÃ³n de la <strong>Cuota de
+            Reserva del 2% de trabajadores con discapacidad</strong>. EstÃ¡ diseÃ±ado para que cualquier analista, sin
+        importar su experiencia previa, pueda procesar los datos masivos de SAP y obtener los KPIs legales de auditorÃ­a.
     </p>
     <hr>
 
-    <h2>🎯 1. Objetivo de la Herramienta y Criterio Técnico</h2>
-    <p>El sistema automatiza el cálculo de plantilla basándose estrictamente en el <strong>Criterio Técnico
-            98/2016</strong> de la Inspección de Trabajo.</p>
+    <h2>ðŸŽ¯ 1. Objetivo de la Herramienta y Criterio TÃ©cnico</h2>
+    <p>El sistema automatiza el cÃ¡lculo de plantilla basÃ¡ndose estrictamente en el <strong>Criterio TÃ©cnico
+            98/2016</strong> de la InspecciÃ³n de Trabajo.</p>
 
     <div class="tip">
-        <strong>Resumen Legal del Criterio "Días Vivos":</strong><br>
-        • <strong>Grupo A (Clásicos):</strong> Contratos indefinidos, o temporales cuyo computo anual real sea
-        <strong>superior a 365 días</strong>. El sistema recoge todos sus días de alta en el periodo analizado y los
-        <strong>divide entre 365</strong>. Quien trabaja todo el año suma 1 entero.<br>
-        • <strong>Grupo B (Temporales Cortos):</strong> Contratos temporales cuyo computo real sea menor a un año. Se
-        suman todos los días que los integrantes de este grupo estuvieron de alta y su total <strong>se divide entre
-            200</strong>. (Se redondea siempre al entero superior, pero sin sobrepasar nunca el número físico real de
+        <strong>Resumen Legal del Criterio "DÃ­as Vivos":</strong><br>
+        â€¢ <strong>Grupo A (ClÃ¡sicos):</strong> Contratos indefinidos, o temporales cuyo computo anual real sea
+        <strong>superior a 365 dÃ­as</strong>. El sistema recoge todos sus dÃ­as de alta en el periodo analizado y los
+        <strong>divide entre 365</strong>. Quien trabaja todo el aÃ±o suma 1 entero.<br>
+        â€¢ <strong>Grupo B (Temporales Cortos):</strong> Contratos temporales cuyo computo real sea menor a un aÃ±o. Se
+        suman todos los dÃ­as que los integrantes de este grupo estuvieron de alta y su total <strong>se divide entre
+            200</strong>. (Se redondea siempre al entero superior, pero sin sobrepasar nunca el nÃºmero fÃ­sico real de
         personas que conformaron este grupo).<br>
-        • La suma del Grupo A y el Grupo B conforma la <strong>Plantilla Total</strong>. El 2% de esta cifra dicta la
+        â€¢ La suma del Grupo A y el Grupo B conforma la <strong>Plantilla Total</strong>. El 2% de esta cifra dicta la
         obligatoriedad.
     </div>
 
     <hr>
 
-    <h2>💻 2. Herramienta Principal: La Calculadora Web (Dashboard)</h2>
-    <p>La vía principal, más rápida y oficial para sacar los informes de la LGD es la herramienta web
-        <code>Calculadora_LGD_Standalone.html</code>. Es una aplicación local robusta que procesa archivos de Excel
-        masivos en tu propio navegador (sin enviar datos a internet por GDPR).</p>
+    <h2>ðŸ’» 2. Herramienta Principal: La Calculadora Web (Dashboard)</h2>
+    <p>La vÃ­a principal, mÃ¡s rÃ¡pida y oficial para sacar los informes de la LGD es la herramienta web
+        <code>Calculadora_LGD_Standalone.html</code>. Es una aplicaciÃ³n local robusta que procesa archivos de Excel
+        masivos en tu propio navegador (sin enviar datos a internet por GDPR).
+    </p>
 
     <h3>Paso 1: Archivo Base de SAP</h3>
-    <p>Necesitas tener el bruto de SAP descargado en Excel (xlsx o csv). El sistema buscará inteligentemente las
-        cabeceras independientemente de cómo se llame el informe, siempre que contenga las siguientes métricas o alias
+    <p>Necesitas tener el bruto de SAP descargado en Excel (xlsx o csv). El sistema buscarÃ¡ inteligentemente las
+        cabeceras independientemente de cÃ³mo se llame el informe, siempre que contenga las siguientes mÃ©tricas o alias
         aproximados:</p>
     <ul>
-        <li><strong>Nº Personal:</strong> Para identificar al trabajador en tramos fragmentados.</li>
+        <li><strong>NÂº Personal:</strong> Para identificar al trabajador en tramos fragmentados.</li>
         <li><strong>Empresa/Sociedad:</strong> Para dividir a los trabajadores.</li>
-        <li><strong>CCC (Cuenta de Cotización):</strong> Opcional, pero necesario para agrupar en el desglose mensual.
+        <li><strong>CCC (Cuenta de CotizaciÃ³n):</strong> Opcional, pero necesario para agrupar en el desglose mensual.
         </li>
-        <li><strong>Fecha Inicio y Fecha de Baja:</strong> Para los solapes cronológicos.</li>
-        <li><strong>Identificación/Tipo de Contrato:</strong> Para saber si buscar en Grupo A o B.</li>
+        <li><strong>Fecha Inicio y Fecha de Baja:</strong> Para los solapes cronolÃ³gicos.</li>
+        <li><strong>IdentificaciÃ³n/Tipo de Contrato:</strong> Para saber si buscar en Grupo A o B.</li>
     </ul>
 
     <h3>Paso 2: Modo de Uso</h4>
         <ol>
             <li>Abre el archivo <code>Calculadora_LGD_Standalone.html</code> con Chrome / Edge / Firefox.</li>
-            <li><strong>Fichero 1 (Opcional):</strong> Si tienes un informe específico del <em>Personal con
-                    Discapacidad</em> de la empresa en un Excel separado, arrástralo a la caja delineada asignada. Esto
-                precargará a los discapacitados en memoria para cruzar datos.</li>
+            <li><strong>Fichero 1 (Opcional):</strong> Si tienes un informe especÃ­fico del <em>Personal con
+                    Discapacidad</em> de la empresa en un Excel separado, arrÃ¡stralo a la caja delineada asignada. Esto
+                precargarÃ¡ a los discapacitados en memoria para cruzar datos.</li>
             <li><strong>Fichero 2 (Maestro Principal):</strong> Arrastra tu informe global de SAP en la zona de subida
                 principal (azul).</li>
-            <li><strong>Configuración:</strong> Selecciona el periodo a analizar (ej. 01/03/2025 al 28/02/2026).</li>
+            <li><strong>ConfiguraciÃ³n:</strong> Selecciona el periodo a analizar (ej. 01/03/2025 al 28/02/2026).</li>
             <li>Pulsa <strong>"Procesar Datos"</strong>.</li>
         </ol>
 
-        <h3>Paso 3: Análisis y Reporte de Pantalla</h4>
-            <p>La aplicación cuenta con un sofisticado <strong>Motor Cronológico JavaScript</strong>. Este motor:</p>
+        <h3>Paso 3: AnÃ¡lisis y Reporte de Pantalla</h4>
+            <p>La aplicaciÃ³n cuenta con un sofisticado <strong>Motor CronolÃ³gico JavaScript</strong>. Este motor:</p>
             <ul>
-                <li>Detecta cambios de formato en el Excel automáticamente.</li>
-                <li>Resuelve periodos superpuestos de un mismo trabajador para evitar que "doblen días" si tienen altas
+                <li>Detecta cambios de formato en el Excel automÃ¡ticamente.</li>
+                <li>Resuelve periodos superpuestos de un mismo trabajador para evitar que "doblen dÃ­as" si tienen altas
                     paralelas por error administrativo.</li>
-                <li>Filtra las "Fechas de Mentira" técnicas de SAP (ej. 31/12/2999).</li>
-                <li>Rastrea el nombre del tipo de contrato para esquivar los fallos de codificación de SAP (pérdida de
+                <li>Filtra las "Fechas de Mentira" tÃ©cnicas de SAP (ej. 31/12/2999).</li>
+                <li>Rastrea el nombre del tipo de contrato para esquivar los fallos de codificaciÃ³n de SAP (pÃ©rdida de
                     acentos).</li>
             </ul>
-            <p>Presentará entonces un Resumen Multi-Sociedad. Podrás acceder a los detalles individuales, ver la curva
+            <p>PresentarÃ¡ entonces un Resumen Multi-Sociedad. PodrÃ¡s acceder a los detalles individuales, ver la curva
                 mensual, consultar la tabla exacta de trabajadores aportados al Grupo B y exportar los resultados a PDF
                 con un solo clic limpio.</p>
 
             <hr>
 
-            <h2>⚙️ 3. Herramienta de Respaldo: Macro VBA LGD_Splitter (Modo Experto)</h2>
-            <p>Como mecanismo secundario, y a su vez motor de depuración, se mantiene disponible la famosa Macro de VBA
-                <code>v9.1</code>. Esta herramienta incrustada en Excel hace matemáticamente los mismos cálculos que la
-                calculadora Web, pero deja los resultados escritos físicamente fila a fila para ser auditados e
-                inspeccionados manualmente.</p>
+            <h2>âš™ï¸ 3. Herramienta de Respaldo: Macro VBA LGD_Splitter (Modo Experto)</h2>
+            <p>Como mecanismo secundario, y a su vez motor de depuraciÃ³n, se mantiene disponible la famosa Macro de VBA
+                <code>v9.1</code>. Esta herramienta incrustada en Excel hace matemÃ¡ticamente los mismos cÃ¡lculos que la
+                calculadora Web, pero deja los resultados escritos fÃ­sicamente fila a fila para ser auditados e
+                inspeccionados manualmente.
+            </p>
 
             <div class="alert">
                 <strong>[!WARNING] Importante</strong><br>
-                El flujo de fórmulas explícitas de Excel (BUSCARV, SI.CONJUNTO) integrado en las celdas se ha retirado
-                definitivamente. La complejidad de resolver tramos de altas y bajas cruzadas entre DNI's múltiples
-                exigía una carga lógica que colgaba los procesadores. La Macro VBA y el Dashboard Web son las únicas
+                El flujo de fÃ³rmulas explÃ­citas de Excel (BUSCARV, SI.CONJUNTO) integrado en las celdas se ha retirado
+                definitivamente. La complejidad de resolver tramos de altas y bajas cruzadas entre DNI's mÃºltiples
+                exigÃ­a una carga lÃ³gica que colgaba los procesadores. La Macro VBA y el Dashboard Web son las Ãºnicas
                 fuentes de verdad aceptadas.
             </div>
 
             <h3>Instrucciones de la Macro VBA v9.1</h3>
             <ol>
-                <li>Mantén el volcado maestro de SAP en la primera hoja de tu Excel (Datos desde la Columna A a la M
-                    como mínimo).</li>
+                <li>MantÃ©n el volcado maestro de SAP en la primera hoja de tu Excel (Datos desde la Columna A a la M
+                    como mÃ­nimo).</li>
                 <li>Introduce la <strong>Fecha de Inicio</strong> legal en la celda <code>R1</code>.</li>
                 <li>Introduce la <strong>Fecha de Fin</strong> legal en la celda <code>S1</code>.</li>
-                <li>Al ejecutar la macro mostrada a continuación se creará una "Fase Cronológica". Analizará y podará
-                    los solapes, escribirá los días activos en la columna <code>N</code>, categorizará el Grupo (A o B)
-                    en la columna <code>O</code> y dejará la matemática aportada en la columna <code>P</code>. Acto
-                    seguido, generará una pestaña nueva de Excel limpia e independiente para cada una de las sociedades
+                <li>Al ejecutar la macro mostrada a continuaciÃ³n se crearÃ¡ una "Fase CronolÃ³gica". AnalizarÃ¡ y podarÃ¡
+                    los solapes, escribirÃ¡ los dÃ­as activos en la columna <code>N</code>, categorizarÃ¡ el Grupo (A o B)
+                    en la columna <code>O</code> y dejarÃ¡ la matemÃ¡tica aportada en la columna <code>P</code>. Acto
+                    seguido, generarÃ¡ una pestaÃ±a nueva de Excel limpia e independiente para cada una de las sociedades
                     encontradas.</li>
             </ol>
 
-            <p><strong>Código Fuente Total a inyectar en Módulo VBA:</strong></p>
+            <p><strong>CÃ³digo Fuente Total a inyectar en MÃ³dulo VBA:</strong></p>
             <div class="code-block">
                 <pre>Sub DividirSociedades_LGD_v9_1()
     Dim wsOrigen As Worksheet, wsNueva As Worksheet
@@ -251,7 +253,7 @@
 
     Set wsOrigen = ActiveSheet
 
-    ' --- VALIDACIÓN FECHAS R1 / S1 ---
+    ' --- VALIDACIÃ“N FECHAS R1 / S1 ---
     If Not IsDate(wsOrigen.Range("R1").Value) Or Not IsDate(wsOrigen.Range("S1").Value) Then
         MsgBox "Faltan las fechas de inicio/fin en R1 y S1", vbCritical
         Exit Sub
@@ -266,7 +268,7 @@
     Application.ScreenUpdating = False
     Application.DisplayAlerts  = False
 
-    ' FASE A: CÁLCULO DE DÍAS Y GRUPOS (Motor Cronológico LGD v9.1)
+    ' FASE A: CÃLCULO DE DÃAS Y GRUPOS (Motor CronolÃ³gico LGD v9.1)
     Dim DictPerson As Object
     Set DictPerson = CreateObject("Scripting.Dictionary")
     
@@ -311,7 +313,7 @@
             actualEnds(j) = BajaReal
         Next j
 
-        ' 2. Orden Cronológico
+        ' 2. Orden CronolÃ³gico
         Dim tempRow As Long, tempDate As Date, startJ As Date, startK As Date
         For j = 1 To UBound(arrRows) - 1
             For k = j + 1 To UBound(arrRows)
@@ -319,7 +321,11 @@
                 startK = wsOrigen.Cells(arrRows(k), 7).Value
                 
                 Dim swap As Boolean: swap = False
-                If startJ &gt; startK Then swap = True ElseIf startJ = startK Then If actualEnds(j) &lt; actualEnds(k) Then swap = True
+                If startJ > startK Then
+                    swap = True
+                ElseIf startJ = startK Then
+                    If actualEnds(j) < actualEnds(k) Then swap = True
+                End If
                 
                 If swap Then
                     tempRow = arrRows(j): arrRows(j) = arrRows(k): arrRows(k) = tempRow
@@ -349,7 +355,7 @@
             Next j
         End If
 
-        ' 4. Escribir Resultados Días / Grupo
+        ' 4. Escribir Resultados DÃ­as / Grupo
         For j = 1 To UBound(arrRows)
             Dim rIdx As Long: rIdx = arrRows(j)
             Dim InicioAjustado As Date, FinAjustado As Date
@@ -366,12 +372,12 @@
                 
                 Dim EsTemporal As Boolean
                 EsTemporal = ((InStr(1, TipoContrato, "Dur.temp", vbTextCompare) &gt; 0 Or _
-                              InStr(1, TipoContrato, "Duración", vbTextCompare) &gt; 0 Or _
+                              InStr(1, TipoContrato, "DuraciÃ³n", vbTextCompare) &gt; 0 Or _
                               InStr(1, TipoContrato, "Temporal", vbTextCompare) &gt; 0) And _
                               InStr(1, TipoContrato, "transformacion", vbTextCompare) = 0 And _
-                              InStr(1, TipoContrato, "transformación", vbTextCompare) = 0)
+                              InStr(1, TipoContrato, "transformaciÃ³n", vbTextCompare) = 0)
                 
-                Dim FechaHraw As Variant: FechaHraw = wsOrigen.Cells(rIdx, 8).Value2 ' col H numérico
+                Dim FechaHraw As Variant: FechaHraw = wsOrigen.Cells(rIdx, 8).Value2 ' col H numÃ©rico
                 Dim EsGrupoA As Boolean
                 If EsTemporal Then
                     If IsNumeric(FechaHraw) And FechaHraw &gt; 0 And FechaHraw &lt; H_SENTINEL Then
@@ -402,7 +408,7 @@
         Next j
     Next key
 
-    ' FASE B: GENERACIÓN DE PESTAÑAS
+    ' FASE B: GENERACIÃ“N DE PESTAÃ‘AS
     Set RangoA_S = wsOrigen.Range("A1:S" &amp; UltimaFila)
     Set Diccionario = CreateObject("Scripting.Dictionary")
 
@@ -424,7 +430,7 @@
     Next i
     wsOrigen.AutoFilterMode = False
 
-    ' FASE C: ORDENAR HOJAS NUMÉRICAMENTE
+    ' FASE C: ORDENAR HOJAS NUMÃ‰RICAMENTE
     Dim hojas() As Variant, idxL As Long, tempVar As Variant
     ReDim hojas(1 To Diccionario.Count)
     idxL = 1
@@ -461,6 +467,181 @@ End Sub
 </pre>
             </div>
 
+<h2>Macro 2: Generar Plantilla Oficial (Anexo)</h2><p>Esta macro independiente escanea el resultado de DividirSociedades y genera el Anexo Excel oficial calculando fracciones (Grupo A) y unidades (Grupo B).</p><div class="code-block"><pre><code class="language-vba">Sub Generar_Plantilla_Oficial_LGD_v2()
+    Dim wsOrigen As Worksheet, wsDestino As Worksheet
+    Dim UltimaFila As Long, i As Long
+    Dim CodigoBuscado As String
+    Dim colEmpresa As Integer, colID As Integer, colNombre As Integer
+    Dim colDias As Integer, colGrupo As Integer
+    
+    &apos; ConfiguraciÃ³n de Columnas de Origen basado en la macro v9.1
+    colEmpresa = 1    &apos; Columna A: SOC
+    colID = 4         &apos; Columna D: PERNR (ID Personal)
+    colNombre = 5     &apos; Columna E: Nombre Trabajador/a
+    colDias = 14      &apos; Columna N: DÃ­as Activos calculados por macro anterior
+    colGrupo = 15     &apos; Columna O: Grupo asignado (A o B)
+    
+    Set wsOrigen = ActiveSheet
+    
+    &apos; Preguntamos quÃ© sociedad quiere exportar
+    CodigoBuscado = InputBox(&quot;Introduce el cÃ³digo de la Sociedad (ej. 1406) para generar su anexo oficial:&quot;, &quot;Anexo LGD&quot;)
+    If Trim(CodigoBuscado) = &quot;&quot; Then Exit Sub
+    
+    UltimaFila = wsOrigen.Cells(wsOrigen.Rows.Count, &quot;A&quot;).End(xlUp).Row
+    
+    &apos; Diccionario para consolidar personas manteniendo el orden exacto de apariciÃ³n
+    Dim dictTrabajadores As Object
+    Set dictTrabajadores = CreateObject(&quot;Scripting.Dictionary&quot;)
+    
+    Dim idTrabajador As String, nombreTrabajador As String
+    Dim diasTramo As Long, isGroupA As Boolean, grupoTexto As String
+    Dim arrDatos As Variant
+    Dim nombreEmpresa As String
+    
+    nombreEmpresa = CodigoBuscado &apos; Por defecto
+    
+    &apos; 1. ESCANEO Y CONSOLIDACIÃ“N DEL EXCEL ORIGINAL
+    For i = 2 To UltimaFila
+        If CStr(wsOrigen.Cells(i, colEmpresa).Value) = CodigoBuscado Then
+            If wsOrigen.Cells(i, 2).Value &lt;&gt; &quot;&quot; Then nombreEmpresa = wsOrigen.Cells(i, 2).Value
+            
+            idTrabajador = CStr(wsOrigen.Cells(i, colID).Value)
+            nombreTrabajador = CStr(wsOrigen.Cells(i, colNombre).Value)
+            diasTramo = CLng(wsOrigen.Cells(i, colDias).Value)
+            grupoTexto = UCase(Trim(wsOrigen.Cells(i, colGrupo).Value))
+            isGroupA = (grupoTexto = &quot;GRUPO A&quot;)
+            
+            &apos; Clave Ãºnica
+            Dim clave As String
+            clave = idTrabajador &amp; &quot;|&quot; &amp; nombreTrabajador
+            
+            If Not dictTrabajadores.Exists(clave) Then
+                &apos; Guardamos: Array(Nombre, DÃ­as Acumulados, EsGrupoA)
+                dictTrabajadores.Add clave, Array(nombreTrabajador, diasTramo, isGroupA)
+            Else
+                arrDatos = dictTrabajadores(clave)
+                arrDatos(1) = arrDatos(1) + diasTramo
+                If isGroupA Then arrDatos(2) = True
+                dictTrabajadores(clave) = arrDatos
+            End If
+        End If
+    Next i
+    
+    If dictTrabajadores.Count = 0 Then
+        MsgBox &quot;No se encontraron registros activos para la Sociedad &quot; &amp; CodigoBuscado &amp; &quot; en la hoja actual.&quot;, vbExclamation
+        Exit Sub
+    End If
+    
+    Application.ScreenUpdating = False
+    
+    &apos; 2. CREAR NUEVA HOJA PLANTILLA &quot;ANEXO&quot;
+    Set wsDestino = ThisWorkbook.Sheets.Add(After:=wsOrigen)
+    wsDestino.Name = &quot;Anexo_&quot; &amp; CodigoBuscado
+    wsDestino.Tab.Color = vbGreen
+    
+    &apos; TÃ­tulos de &quot;Anexo_Cuota.xlsx&quot;
+    wsDestino.Cells(1, 1).Value = &quot;ANEXO&quot;
+    wsDestino.Cells(1, 1).Font.Bold = True
+    
+    wsDestino.Cells(2, 1).Value = &quot;El seÃ±or/a........................., con NIF......................., en calidad de........................de la empresa &quot; &amp; nombreEmpresa &amp; &quot;, con CIF............................, DECLARA:&quot;
+    wsDestino.Cells(3, 1).Value = &quot;Que la media de personas trabajadoras (a tiempo completo o parcial) en los 12 meses anteriores, comprendidos entre el 01/03/2025 y 28/02/2026, calculada segÃºn lo previsto en el RD 364/2005, de 8 de abril, es la que resulta del siguiente cuadro de datos:&quot;
+    
+    &apos; Fila 4: Encabezados Requeridos
+    wsDestino.Cells(4, 1).Value = &quot;Nombre Trabajador/a&quot;
+    wsDestino.Cells(4, 2).Value = &quot;Personas con contrato indefinido, que hayan trabajado 365 dÃ­as en el periodo (Indicar un 1 en tal caso)&quot;
+    wsDestino.Cells(4, 3).Value = &quot;Personas con contrato temporal, que hayan trabajado 200* o mÃ¡s dÃ­as en el periodo (Indicar un 1 en la celda)&quot;
+    wsDestino.Cells(4, 4).Value = &quot;DÃ­as trabajados en el periodo por las personas con contrato indefinito que hayan trabajado menos de 365 dÃ­as (o con contrato temporal superior a un aÃ±o, que hayan trabajado menos de 200 dÃ­as)&quot;
+    wsDestino.Cells(4, 5).Value = &quot;DÃ­as trabajados* en el perÃ­odo por las personas con contrato temporal que hayan trabajado menos de 200 dÃ­as (y que no tengan contrato superior a un aÃ±o)&quot;
+    wsDestino.Cells(4, 6).Value = &quot;TOTAL plantilla media&quot;
+    
+    wsDestino.Range(&quot;A4:F4&quot;).Font.Bold = True
+    wsDestino.Range(&quot;A4:F4&quot;).VerticalAlignment = xlCenter
+    wsDestino.Range(&quot;A4:F4&quot;).HorizontalAlignment = xlCenter
+    wsDestino.Range(&quot;A4:F4&quot;).WrapText = True
+    wsDestino.Rows(4).RowHeight = 70
+    
+    &apos; 3. VOLCADO LÃ“GICO DE DATOS B/C/D/E (Fila 5 en adelante)
+    Dim filaDestino As Long
+    filaDestino = 5
+    
+    Dim claveKey As Variant
+    Dim nombreOut As String
+    Dim diasOut As Long
+    Dim esGrpA As Boolean
+    
+    For Each claveKey In dictTrabajadores.Keys
+        arrDatos = dictTrabajadores(claveKey)
+        nombreOut = arrDatos(0)
+        diasOut = arrDatos(1)
+        esGrpA = arrDatos(2)
+        
+        wsDestino.Cells(filaDestino, 1).Value = nombreOut
+        wsDestino.Cells(filaDestino, 2).Value = &quot;&quot;
+        wsDestino.Cells(filaDestino, 3).Value = &quot;&quot;
+        wsDestino.Cells(filaDestino, 4).Value = &quot;&quot;
+        wsDestino.Cells(filaDestino, 5).Value = &quot;&quot;
+        
+        If esGrpA Then
+            If diasOut &gt;= 365 Then
+                wsDestino.Cells(filaDestino, 2).Value = 1
+            Else
+                wsDestino.Cells(filaDestino, 4).Value = diasOut
+            End If
+        Else
+            If diasOut &gt;= 200 Then
+                wsDestino.Cells(filaDestino, 3).Value = 1
+            Else
+                wsDestino.Cells(filaDestino, 5).Value = diasOut
+            End If
+        End If
+        
+        &apos; FÃ³rmula individual por trabajador (opcional, aunque en tu anexo el total es global abajo,
+        &apos; dejaremos la fÃ³rmula por fila igual por si acaso te sirve, o la quitamos si no la necesitas).
+        &apos; Descomenta esta lÃ­nea si quieres desglose de cuota por trabajador:
+        &apos; wsDestino.Cells(filaDestino, 6).Formula = &quot;=B&quot; &amp; filaDestino &amp; &quot;+C&quot; &amp; filaDestino &amp; &quot;+(D&quot; &amp; filaDestino &amp; &quot;/365)+(E&quot; &amp; filaDestino &amp; &quot;/200)&quot;
+        
+        filaDestino = filaDestino + 1
+    Next claveKey
+    
+    &apos; 4. TEXTOS Y TOTALES FINALES DEL ANEXO OFICIAL
+    Dim fTotales As Long
+    fTotales = filaDestino + 1
+    
+    wsDestino.Cells(fTotales, 4).Value = &quot;Total dies=&quot;
+    wsDestino.Cells(fTotales, 5).Value = &quot;Total dies=&quot;
+    wsDestino.Cells(fTotales, 4).Font.Bold = True
+    wsDestino.Cells(fTotales, 5).Font.Bold = True
+    
+    fTotales = fTotales + 1
+    &apos; Sumandos A-B-C-D
+    wsDestino.Cells(fTotales, 2).Formula = &quot;=&quot;&quot;A-Total persones=&quot;&quot; &amp; SUM(B5:B&quot; &amp; (filaDestino - 1) &amp; &quot;)&quot;
+    wsDestino.Cells(fTotales, 3).Formula = &quot;=&quot;&quot;B-Total persones=&quot;&quot; &amp; SUM(C5:C&quot; &amp; (filaDestino - 1) &amp; &quot;)&quot;
+    wsDestino.Cells(fTotales, 4).Formula = &quot;=&quot;&quot;C-Dividir total dies/365=&quot;&quot; &amp; SUM(D5:D&quot; &amp; (filaDestino - 1) &amp; &quot;)/365&quot;
+    wsDestino.Cells(fTotales, 5).Formula = &quot;=&quot;&quot;D-Dividir total dies/200=&quot;&quot; &amp; SUM(E5:E&quot; &amp; (filaDestino - 1) &amp; &quot;)/200&quot;
+    
+    &apos; FÃ³rmula Total global
+    wsDestino.Cells(fTotales, 6).Formula = &quot;=&quot;&quot;TOTAL A+B+C+D=&quot;&quot; &amp; (SUM(B5:B&quot; &amp; (filaDestino - 1) &amp; &quot;) + SUM(C5:C&quot; &amp; (filaDestino - 1) &amp; &quot;) + (SUM(D5:D&quot; &amp; (filaDestino - 1) &amp; &quot;)/365) + (SUM(E5:E&quot; &amp; (filaDestino - 1) &amp; &quot;)/200))&quot;
+    wsDestino.Range(&quot;B&quot; &amp; fTotales &amp; &quot;:F&quot; &amp; fTotales).Font.Bold = True
+    
+    fTotales = fTotales + 1
+    &apos; Explicaciones legales en la parte inferior
+    wsDestino.Cells(fTotales, 3).Value = &quot;*Als efectes del cÃ²mput de 200 dies S&apos;han de comptabilitzar tambÃ© els dies de descans setmanal, els festius i les vacances anuals.&quot;
+    wsDestino.Cells(fTotales, 5).Value = &quot;*S&apos;han de comptabilitzar tambÃ© els dies de descans setmanal, els festius i les vacances anuals.&quot;
+    wsDestino.Cells(fTotales, 3).Font.Italic = True
+    wsDestino.Cells(fTotales, 5).Font.Italic = True
+    
+    &apos; Ajustes EstÃ©ticos
+    wsDestino.Columns(&quot;A:A&quot;).ColumnWidth = 35
+    wsDestino.Columns(&quot;B:F&quot;).ColumnWidth = 18
+    &apos; Cuadricula en la tabla central
+    wsDestino.Range(&quot;A4:F&quot; &amp; (filaDestino - 1)).Borders.LineStyle = xlContinuous
+    &apos; Formato a textos descriptivos
+    wsDestino.Range(&quot;A2:A3&quot;).WrapText = False
+    
+    Application.ScreenUpdating = True
+    MsgBox &quot;Anexo Oficial generado correctamente en la nueva pestaÃ±a &apos;Anexo_&quot; &amp; CodigoBuscado &amp; &quot;&apos;.&quot;, vbInformation
+End Sub
+</code></pre></div>
 </body>
 
 </html>
