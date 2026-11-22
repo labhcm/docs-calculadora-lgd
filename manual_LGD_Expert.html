@@ -1,647 +1,382 @@
-?<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual de Usuario Integral - LGD 2%</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --bg-color: #f8fafc;
-            --text-main: #334155;
-            --text-light: #64748b;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h1,
-        h2,
-        h3 {
-            color: #0f172a;
-            margin-top: 2rem;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #e0f2fe;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            color: var(--primary-dark);
-        }
-
-        p,
-        li {
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        .alert {
-            background-color: #fef2f2;
-            border-left: 4px solid #ef4444;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 20px 0;
-        }
-
-        .alert strong {
-            color: #b91c1c;
-        }
-
-        .tip {
-            background-color: #f0fdf4;
-            border-left: 4px solid #22c55e;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 20px 0;
-        }
-
-        .tip strong {
-            color: #15803d;
-        }
-
-        .code-block {
-            background: #1e293b;
-            color: #cbd5e1;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: 'Courier New', Courier, monospace;
-            overflow-x: auto;
-            margin: 20px 0;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-            font-size: 0.85em;
-            line-height: 1.4;
-        }
-
-        code {
-            background: #e2e8f0;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #b91c1c;
-            font-family: monospace;
-            font-size: 0.9em;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: var(--border-color);
-            margin: 40px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid var(--border-color);
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f1f5f9;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de uso · Cumplimiento LGD (cuota de reserva del 2 %)</title>
+<style>
+:root{--marca:#0284c7;--marca-suave:#e0f2fe;--fondo:#f8fafc;--tinta:#0f172a;--tinta-2:#475569;--tinta-3:#64748b;--linea:#e2e8f0;--ok:#15803d;--ok-f:#f0fdf4;--aviso:#92400e;--aviso-f:#fef3c7;--mal:#b91c1c;--mal-f:#fef2f2}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;background:var(--fondo);color:#334155;line-height:1.6;margin:0;padding:0 20px 60px}
+main{max-width:900px;margin:0 auto}
+header.cab{max-width:900px;margin:0 auto;padding:40px 0 10px;border-bottom:2px solid var(--marca);display:flex;gap:16px;align-items:center}
+.sello{flex:none;width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;font-weight:800;font-size:1.15rem;display:flex;align-items:center;justify-content:center}
+h1{font-size:1.9rem;color:var(--tinta);margin:0;line-height:1.2}
+.sub{color:var(--tinta-3);font-size:.95rem;margin-top:4px}
+h2{font-size:1.35rem;color:var(--tinta);background:var(--marca-suave);padding:10px 15px;border-radius:8px;border-left:4px solid var(--marca);margin:2.6rem 0 1rem;scroll-margin-top:12px}
+h3{font-size:1.1rem;color:var(--marca);margin:1.8rem 0 .5rem}
+p,li{font-size:1rem;margin:0 0 .8rem}
+ul,ol{padding-left:1.4rem;margin:0 0 1rem}
+a{color:var(--marca)}
+code{background:#e2e8f0;padding:1px 6px;border-radius:4px;color:#b91c1c;font-family:Consolas,'Courier New',monospace;font-size:.9em}
+.indice{background:#fff;border:1px solid var(--linea);border-radius:10px;padding:16px 20px;margin:24px 0}
+.indice ol{columns:2;column-gap:32px;margin:0}
+.indice li{margin:0 0 .35rem;break-inside:avoid}
+.nota,.aviso,.clave{padding:13px 16px;border-radius:6px;margin:16px 0}
+.nota{background:var(--marca-suave);border-left:4px solid var(--marca)}
+.clave{background:var(--ok-f);border-left:4px solid #22c55e}
+.clave strong{color:var(--ok)}
+.aviso{background:var(--mal-f);border-left:4px solid #ef4444}
+.aviso strong{color:var(--mal)}
+.nota p:last-child,.aviso p:last-child,.clave p:last-child{margin-bottom:0}
+.tabla{overflow-x:auto;margin:0 0 1.2rem}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.95rem}
+th,td{border:1px solid var(--linea);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f1f5f9;color:var(--tinta)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td{font-weight:700;background:#f8fafc}
+.chip{display:inline-block;border-radius:99px;padding:1px 10px;font-size:.82rem;font-weight:700;white-space:nowrap}
+.c-ok{background:var(--ok-f);color:var(--ok)} .c-av{background:var(--aviso-f);color:var(--aviso)} .c-mal{background:var(--mal-f);color:var(--mal)} .c-ex{background:#f1f5f9;color:var(--tinta-2)}
+.cat{display:inline-block;width:15px;height:10px;border-radius:2.5px;vertical-align:-1px;background:repeating-linear-gradient(180deg,#f6c945 0 1.1px,#d9483b 1.1px 2.2px);box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.pie{max-width:900px;margin:50px auto 0;padding-top:16px;border-top:1px solid var(--linea);color:var(--tinta-3);font-size:.88rem}
+@media (max-width:640px){.indice ol{columns:1}h1{font-size:1.5rem}header.cab{padding-top:24px}}
+@media print{body{background:#fff}h2{break-after:avoid}.indice{display:none}}
+</style>
 </head>
-
 <body>
 
-    <h1><i class="fa-solid fa-book-open"></i> Sistema Global LGD 2% - Manual del Proyecto</h1>
-    <p>Este documento es la guía oficial para entender y operar el ecosistema de validación de la <strong>Cuota de
-            Reserva del 2% de trabajadores con discapacidad</strong>. Está diseñado para que cualquier analista, sin
-        importar su experiencia previa, pueda procesar los datos masivos de SAP y obtener los KPIs legales de auditoría.
-    </p>
-    <hr>
+<header class="cab">
+  <div class="sello">2%</div>
+  <div>
+    <h1>Cumplimiento LGD · Manual de uso</h1>
+    <div class="sub">Calculadora de la cuota de reserva del 2 % para personas con discapacidad · versión 2</div>
+  </div>
+</header>
 
-    <h2>🎯 1. Objetivo de la Herramienta y Criterio Técnico</h2>
-    <p>El sistema automatiza el cálculo de plantilla basándose estrictamente en el <strong>Criterio Técnico
-            98/2016</strong> de la Inspección de Trabajo.</p>
+<main>
 
-    <div class="tip">
-        <strong>Resumen Legal del Criterio "Días Vivos":</strong><br>
-        • <strong>Grupo A (Clásicos):</strong> Contratos indefinidos, o temporales cuyo computo anual real sea
-        <strong>superior a 365 días</strong>. El sistema recoge todos sus días de alta en el periodo analizado y los
-        <strong>divide entre 365</strong>. Quien trabaja todo el año suma 1 entero.<br>
-        • <strong>Grupo B (Temporales Cortos):</strong> Contratos temporales cuyo computo real sea menor a un año. Se
-        suman todos los días que los integrantes de este grupo estuvieron de alta y su total <strong>se divide entre
-            200</strong>. (Se redondea siempre al entero superior, pero sin sobrepasar nunca el número físico real de
-        personas que conformaron este grupo).<br>
-        • La suma del Grupo A y el Grupo B conforma la <strong>Plantilla Total</strong>. El 2% de esta cifra dicta la
-        obligatoriedad.
-    </div>
+<p style="margin-top:22px">Este manual explica cómo usar la aplicación <strong>Cumplimiento LGD</strong> (<code>Calculadora_LGD.html</code>): qué ficheros necesita, cómo hace el cálculo, qué enseña cada pantalla y qué se puede exportar. Está pensado para que cualquier persona del equipo pueda sacar el resultado sin conocer la herramienta de antemano.</p>
 
-    <hr>
+<nav class="indice" aria-label="Índice">
+  <ol>
+    <li><a href="#que-es">Qué es y para qué sirve</a></li>
+    <li><a href="#ficheros">Los dos ficheros de SAP</a></li>
+    <li><a href="#pasos">Uso paso a paso</a></li>
+    <li><a href="#calculo">Cómo se hace el cálculo</a></li>
+    <li><a href="#resumen">Pantalla «Resumen global»</a></li>
+    <li><a href="#detalle">Pantalla «Detalle sociedad»</a></li>
+    <li><a href="#avisos">Pantalla «Avisos»</a></li>
+    <li><a href="#medidas">Excepcionalidad y medidas alternativas</a></li>
+    <li><a href="#exportar">Exportaciones</a></li>
+    <li><a href="#guardado">Qué se guarda y qué no</a></li>
+    <li><a href="#config">Cambiar criterios (<code>config.js</code>)</a></li>
+    <li><a href="#problemas">Problemas frecuentes</a></li>
+    <li><a href="#anterior">Cambios respecto a la versión anterior</a></li>
+    <li><a href="#normas">Normativa de referencia</a></li>
+  </ol>
+</nav>
 
-    <h2>💻 2. Herramienta Principal: La Calculadora Web (Dashboard)</h2>
-    <p>La vía principal, más rápida y oficial para sacar los informes de la LGD es la herramienta web
-        <code>Calculadora_LGD_Standalone.html</code>. Es una aplicación local robusta que procesa archivos de Excel
-        masivos en tu propio navegador (sin enviar datos a internet por GDPR).
-    </p>
+<!-- ============================================================ -->
+<h2 id="que-es">1. Qué es y para qué sirve</h2>
+<p>La aplicación calcula, <strong>sociedad a sociedad</strong>, tres cosas:</p>
+<ul>
+  <li>la <strong>plantilla media</strong> de los 12 meses del periodo;</li>
+  <li>la <strong>cuota de reserva</strong>: el 2 % de esa plantilla, si la sociedad tiene 50 o más trabajadores;</li>
+  <li>el <strong>grado de cumplimiento</strong>: cuántas personas con discapacidad hay y cuántos puestos faltan por cubrir.</li>
+</ul>
+<p>Sigue el método del <strong>Criterio Técnico 98/2016</strong> de la Inspección de Trabajo y Seguridad Social. Se usa varias veces al año para seguir la evolución y una última vez para la comunicación anual del primer trimestre.</p>
+<div class="clave">
+  <p><strong>Los datos no salen del ordenador.</strong> Los Excel se leen en el propio navegador. La aplicación no necesita instalación, servidor ni conexión a internet; solo los enlaces del menú «Documentación y ayuda», como este manual, necesitan conexión.</p>
+</div>
+<p>El resultado es un <strong>cálculo interno de apoyo</strong>, no un documento oficial: depende de la calidad de los datos de SAP y de algunas decisiones de criterio que conviene tener validadas con asesoría laboral.</p>
 
-    <h3>Paso 1: Archivo Base de SAP</h3>
-    <p>Necesitas tener el bruto de SAP descargado en Excel (xlsx o csv). El sistema buscará inteligentemente las
-        cabeceras independientemente de cómo se llame el informe, siempre que contenga las siguientes métricas o alias
-        aproximados:</p>
+<!-- ============================================================ -->
+<h2 id="ficheros">2. Los dos ficheros de SAP</h2>
+
+<h3>2.1 Plantilla (obligatorio)</h3>
+<p>Es la exportación de SAP HCM con las medidas de personal del periodo (Ad Hoc Query, transacción <code>S_PHO_48000513</code>). Vale en Excel o CSV. La aplicación lee la primera hoja y localiza sola la fila de cabeceras.</p>
+<div class="tabla"><table>
+  <tr><th>Columna</th><th>Para qué se usa</th><th>¿Necesaria?</th></tr>
+  <tr><td><code>Soc.</code> y <code>Sociedad</code></td><td>Código y nombre de la sociedad.</td><td>Sí</td></tr>
+  <tr><td><code>Nº pers.</code> y <code>Número de personal</code></td><td>Identificador y nombre de la persona.</td><td>Sí</td></tr>
+  <tr><td><code>Desde</code> y <code>Hasta</code></td><td>Tramo de alta. <code>31.12.9999</code> significa que sigue de alta.</td><td>Sí</td></tr>
+  <tr><td><code>FeIniContr</code></td><td>Inicio del contrato, para medir cuánto duran los temporales.</td><td>Sí</td></tr>
+  <tr><td><code>Tipo de contrato</code></td><td>Código de tres cifras. Decide si la persona cuenta como fija o temporal.</td><td>Sí</td></tr>
+  <tr><td><code>Fe.antig.</code></td><td>Antigüedad, como dato de apoyo.</td><td>Sí</td></tr>
+  <tr><td><code>Status ocupación</code></td><td>Dice si en ese tramo la persona estaba activa o dada de baja. <strong>Los tramos de baja no se cuentan.</strong></td><td>Pedirla siempre</td></tr>
+  <tr><td><code>Clase de medida</code></td><td>Sirve para reconocer las filas «Go Live».</td><td>Pedirla siempre</td></tr>
+  <tr><td><code>NIF</code></td><td>Identifica a la persona aunque tenga dos números de personal o haya cambiado de documento.</td><td>Pedirla siempre</td></tr>
+  <tr><td><code>CCC emp.</code></td><td>Código de cuenta de cotización. Da el reparto por centros y decide el redondeo de la cuota en Catalunya.</td><td>Pedirla siempre</td></tr>
+</table></div>
+<div class="aviso">
+  <p><strong>No exportes sin «Status ocupación».</strong> En una migración de sistema se abre una medida «Go Live» a todas las personas, también a las que ya no están en la empresa. Sin esa columna, cada una de esas filas parece un alta nueva y la plantilla sale muy inflada. Si falta, la aplicación lo avisa en el resumen.</p>
+</div>
+<p>Si el nombre del fichero lleva las fechas, por ejemplo <code>LGD_01.11.2025-31.10.2026.xlsx</code>, el periodo se rellena solo.</p>
+
+<h3>2.2 Personal con discapacidad (opcional)</h3>
+<p>Listado con <code>Soc.</code>, <code>Nº pers.</code>, nombre y, si están, <code>GI</code> (grado) y <code>Grupo de invalidez</code>.</p>
+<ul>
+  <li>Se cruza con la plantilla por sociedad y número de personal. <strong>Las altas y bajas se toman del fichero de plantilla</strong>, así que el listado no necesita fechas.</li>
+  <li>Lo mejor es exportarlo para el <strong>mismo periodo</strong> que la plantilla, incluyendo a quienes causaron baja: así la cobertura de cada mes sale completa.</li>
+  <li>Puede traer varias filas por persona. Cada persona cuenta una sola vez.</li>
+  <li>Si no lo tienes, puedes escribir a mano el número de personas con discapacidad de cada sociedad.</li>
+</ul>
+<div class="nota">
+  <p><strong>Exporta los dos ficheros el mismo día.</strong> SAP cambia de un día para otro, y dos exportaciones de fechas distintas pueden no cuadrar.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="pasos">3. Uso paso a paso</h2>
+<ol>
+  <li><strong>Abre</strong> <code>Calculadora_LGD.html</code> con doble clic (Chrome, Edge o Firefox). La carpeta debe estar completa: el archivo necesita las subcarpetas <code>css</code>, <code>js</code>, <code>lib</code> y <code>fonts</code>.</li>
+  <li><strong>Paso 1 · Plantilla.</strong> Arrastra el Excel de SAP al primer recuadro o haz clic para elegirlo.</li>
+  <li><strong>Paso 2 · Personal con discapacidad.</strong> Arrastra el listado al segundo recuadro. Puedes dejarlo para después con el botón «Cargar discapacidad».</li>
+  <li>Pulsa <strong>«Calcular LGD»</strong>.</li>
+  <li><strong>Revisa la barra superior</strong>:
     <ul>
-        <li><strong>Nº Personal:</strong> Para identificar al trabajador en tramos fragmentados.</li>
-        <li><strong>Empresa/Sociedad:</strong> Para dividir a los trabajadores.</li>
-        <li><strong>CCC (Cuenta de Cotización):</strong> Opcional, pero necesario para agrupar en el desglose mensual.
-        </li>
-        <li><strong>Fecha Inicio y Fecha de Baja:</strong> Para los solapes cronológicos.</li>
-        <li><strong>Identificación/Tipo de Contrato:</strong> Para saber si buscar en Grupo A o B.</li>
+      <li><em>Inicio y fin del periodo</em>: deben ser 12 meses exactos. Al cambiarlos, todo se recalcula.</li>
+      <li><em>Fijos discontinuos: contar los periodos de inactividad</em>: viene desmarcada. Ver el <a href="#calculo">apartado 4</a>.</li>
+      <li><em>Ejercicio</em>: el año natural al que se apuntan los importes de medidas alternativas.</li>
     </ul>
+  </li>
+  <li><strong>Mira primero la pestaña «Avisos»</strong>: dice qué filas no se han podido interpretar.</li>
+  <li>Consulta el <strong>Resumen global</strong> y entra en cada sociedad para ver el detalle.</li>
+  <li><strong>Exporta</strong> lo que necesites: Anexo, resumen o avisos.</li>
+</ol>
+<p>Para empezar con otros ficheros, pulsa «Cargar otros ficheros» en la cabecera.</p>
 
-    <h3>Paso 2: Modo de Uso</h4>
-        <ol>
-            <li>Abre el archivo <code>Calculadora_LGD_Standalone.html</code> con Chrome / Edge / Firefox.</li>
-            <li><strong>Fichero 1 (Opcional):</strong> Si tienes un informe específico del <em>Personal con
-                    Discapacidad</em> de la empresa en un Excel separado, arrástralo a la caja delineada asignada. Esto
-                precargará a los discapacitados en memoria para cruzar datos.</li>
-            <li><strong>Fichero 2 (Maestro Principal):</strong> Arrastra tu informe global de SAP en la zona de subida
-                principal (azul).</li>
-            <li><strong>Configuración:</strong> Selecciona el periodo a analizar (ej. 01/03/2025 al 28/02/2026).</li>
-            <li>Pulsa <strong>"Procesar Datos"</strong>.</li>
-        </ol>
+<!-- ============================================================ -->
+<h2 id="calculo">4. Cómo se hace el cálculo</h2>
 
-        <h3>Paso 3: Análisis y Reporte de Pantalla</h4>
-            <p>La aplicación cuenta con un sofisticado <strong>Motor Cronológico JavaScript</strong>. Este motor:</p>
-            <ul>
-                <li>Detecta cambios de formato en el Excel automáticamente.</li>
-                <li>Resuelve periodos superpuestos de un mismo trabajador para evitar que "doblen días" si tienen altas
-                    paralelas por error administrativo.</li>
-                <li>Filtra las "Fechas de Mentira" técnicas de SAP (ej. 31/12/2999).</li>
-                <li>Rastrea el nombre del tipo de contrato para esquivar los fallos de codificación de SAP (pérdida de
-                    acentos).</li>
-            </ul>
-            <p>Presentará entonces un Resumen Multi-Sociedad. Podrás acceder a los detalles individuales, ver la curva
-                mensual, consultar la tabla exacta de trabajadores aportados al Grupo B y exportar los resultados a PDF
-                con un solo clic limpio.</p>
+<h3>4.1 Qué contrato es cada uno</h3>
+<p>Se clasifica por el primer dígito del código de contrato:</p>
+<div class="tabla"><table>
+  <tr><th>Código</th><th>Clase</th><th>Cómo cuenta</th></tr>
+  <tr><td><code>1xx</code> y <code>2xx</code></td><td>Indefinido</td><td>Como fijo</td></tr>
+  <tr><td><code>3xx</code></td><td>Fijo discontinuo</td><td>Como fijo</td></tr>
+  <tr><td><code>4xx</code> y <code>5xx</code></td><td>Temporal (incluye interinidad y sustitución)</td><td>Como fijo si el contrato dura más de un año; si no, por la regla de los 200 días</td></tr>
+  <tr><td>Vacío o <code>000</code></td><td>Sin contrato laboral</td><td>No cuenta. Genera un aviso</td></tr>
+  <tr><td>Cualquier otro</td><td>No reconocido</td><td>No cuenta. Genera un aviso</td></tr>
+</table></div>
+<p>La jornada parcial cuenta igual que la completa.</p>
 
-            <hr>
+<h3>4.2 La plantilla</h3>
+<div class="clave">
+  <p><strong>A · Fijos.</strong> Se suman los días de alta de indefinidos, fijos discontinuos y temporales de más de un año, y se divide entre los días del periodo (365, o 366). Quien ha estado todo el año cuenta 1.</p>
+  <p><strong>B · Temporales de hasta un año.</strong> Se suman los días de alta de todos ellos, se divide entre 200 y se redondea hacia arriba. El resultado no puede superar el número de personas temporales distintas.</p>
+  <p><strong>Plantilla = A + B.</strong> Con 50 o más, la sociedad está obligada.</p>
+</div>
+<p>Ejemplo: 150.511 días de fijos en un periodo de 365 días dan A = 412,36. Los temporales de hasta un año suman 950 días: 950 / 200 = 4,75, que sube a B = 5. Plantilla = 417,36.</p>
+<ul>
+  <li><strong>Ningún día cuenta dos veces</strong> para una misma persona: los tramos repetidos o solapados se unen.</li>
+  <li><strong>Temporales de más de un año</strong>: se mide la duración real del contrato, desde <code>FeIniContr</code> hasta el último <code>Hasta</code>. Si no tiene fecha fin, hasta el final del periodo.</li>
+  <li><strong>Fijos discontinuos</strong>: con la casilla desmarcada solo cuentan los días de cada tramo de alta. Marcada, cuenta también la inactividad entre el primer y el último llamamiento del periodo (CT, apartado 2.2.5).</li>
+  <li><strong>Cada sociedad por separado</strong>: no se suman plantillas ni se compensan cumplimientos entre empresas del grupo.</li>
+</ul>
 
-            <h2>⚙️ 3. Herramienta de Respaldo: Macro VBA LGD_Splitter (Modo Experto)</h2>
-            <p>Como mecanismo secundario, y a su vez motor de depuración, se mantiene disponible la famosa Macro de VBA
-                <code>v9.1</code>. Esta herramienta incrustada en Excel hace matemáticamente los mismos cálculos que la
-                calculadora Web, pero deja los resultados escritos físicamente fila a fila para ser auditados e
-                inspeccionados manualmente.
-            </p>
+<h3>4.3 La cuota y su redondeo</h3>
+<p>La cuota es el 2 % de la plantilla, convertido en un número entero de puestos:</p>
+<ul>
+  <li><strong>Criterio estatal</strong> (CT, apartado 4.1): se eliminan los decimales. Con 8,62 la cuota es 8.</li>
+  <li><strong>Catalunya</strong> (Decret 86/2015, art. 3.3): desde 0,5 se redondea al alza. Con 8,62 la cuota es 9.</li>
+</ul>
+<p>La aplicación decide sola cuál aplica a cada sociedad: redondea <strong>al alza cuando el 85 % o más de su plantilla está en Catalunya</strong>, según el CCC, y a la baja en el resto. Esas sociedades llevan una marca de cuatro barras <span class="cat" title="Ejemplo de la marca"></span> junto a su código. Sin la columna <code>CCC emp.</code>, todas redondean a la baja.</p>
 
-            <div class="alert">
-                <strong>[!WARNING] Importante</strong><br>
-                El flujo de fórmulas explícitas de Excel (BUSCARV, SI.CONJUNTO) integrado en las celdas se ha retirado
-                definitivamente. La complejidad de resolver tramos de altas y bajas cruzadas entre DNI's múltiples
-                exigía una carga lógica que colgaba los procesadores. La Macro VBA y el Dashboard Web son las únicas
-                fuentes de verdad aceptadas.
-            </div>
+<h3>4.4 Las personas con discapacidad</h3>
+<ul>
+  <li>Cada persona cuenta <strong>1</strong>, sin ponderar por grado, jornada o tipo de contrato.</li>
+  <li>Cuentan quienes tienen un grado igual o superior al 33 % o una pensión de incapacidad permanente.</li>
+  <li>La referencia es quién está de alta <strong>en la fecha fin del periodo</strong>. Además se muestra cuántas había a fin de cada mes.</li>
+</ul>
 
-            <h3>Instrucciones de la Macro VBA v9.1</h3>
-            <ol>
-                <li>Mantén el volcado maestro de SAP en la primera hoja de tu Excel (Datos desde la Columna A a la M
-                    como mínimo).</li>
-                <li>Introduce la <strong>Fecha de Inicio</strong> legal en la celda <code>R1</code>.</li>
-                <li>Introduce la <strong>Fecha de Fin</strong> legal en la celda <code>S1</code>.</li>
-                <li>Al ejecutar la macro mostrada a continuación se creará una "Fase Cronológica". Analizará y podará
-                    los solapes, escribirá los días activos en la columna <code>N</code>, categorizará el Grupo (A o B)
-                    en la columna <code>O</code> y dejará la matemática aportada en la columna <code>P</code>. Acto
-                    seguido, generará una pestaña nueva de Excel limpia e independiente para cada una de las sociedades
-                    encontradas.</li>
-            </ol>
+<!-- ============================================================ -->
+<h2 id="resumen">5. Pantalla «Resumen global»</h2>
+<p><strong>Indicadores de arriba:</strong> sociedades obligadas, cuántas cumplen, puestos por cubrir, sociedades cerca de un umbral y el efecto de la inactividad de los fijos discontinuos.</p>
+<p><strong>Una ficha por sociedad</strong>, con su plantilla, su cuota y sus personas con discapacidad. El color indica el estado:</p>
+<div class="tabla"><table>
+  <tr><th>Estado</th><th>Qué significa</th></tr>
+  <tr><td><span class="chip c-ok">Cumple</span></td><td>Tiene tantas personas con discapacidad como pide la cuota, o más.</td></tr>
+  <tr><td><span class="chip c-ok">Cumple (m. alt.)</span></td><td>No llega con contratación directa, pero tiene excepcionalidad vigente y los importes del ejercicio cubren lo que falta.</td></tr>
+  <tr><td><span class="chip c-av">Incumple · con discapacidad</span></td><td>Tiene personas con discapacidad, pero no llega a la cuota.</td></tr>
+  <tr><td><span class="chip c-mal">Incumple · sin discapacidad</span></td><td>Está obligada y no tiene ninguna.</td></tr>
+  <tr><td><span class="chip c-ex">Exenta</span></td><td>Plantilla inferior a 50.</td></tr>
+</table></div>
+<p>Legalmente solo existe cumplir o incumplir: el ámbar y el rojo son el mismo incumplimiento, con distinto punto de partida.</p>
+<ul>
+  <li><strong>La leyenda filtra.</strong> Pulsa uno o varios estados para ver solo esas sociedades.</li>
+  <li><strong>Fichas o Tabla.</strong> El conmutador de la derecha cambia a una tabla con todas las cifras.</li>
+  <li><strong>Banderita</strong>: la sociedad está a pocos trabajadores de los 50 o de un cambio de cuota.</li>
+  <li><strong>Marca de cuatro barras</strong> <span class="cat"></span>: 85 % o más de la plantilla en Catalunya. Al pasar el ratón se ve el porcentaje.</li>
+  <li><strong>Pulsa una sociedad</strong> para abrir su detalle.</li>
+</ul>
 
-            <p><strong>Código Fuente Total a inyectar en Módulo VBA:</strong></p>
-            <div class="code-block">
-                <pre>Sub DividirSociedades_LGD_v9_1()
-    Dim wsOrigen As Worksheet, wsNueva As Worksheet
-    Dim UltimaFila As Long, i As Long
-    Dim Diccionario As Object
-    Dim CodigoSoc As String, NombreHoja As String
-    Dim RangoA_S As Range
+<!-- ============================================================ -->
+<h2 id="detalle">6. Pantalla «Detalle sociedad»</h2>
+<p>Arriba hay un selector para cambiar de sociedad y los botones «Imprimir / PDF» y «Exportar Anexo (Excel)». Debajo, estos bloques:</p>
 
-    Dim FInicio As Date, FRefInicio As Date, FRefFin As Date
-    Dim Dias As Long, j As Long, k As Long
-    Dim key As Variant
+<h3>Cómo se obtiene la plantilla</h3>
+<p>El cálculo paso a paso: días de fijos, división entre los días del periodo, temporales por la regla de los 200 días, plantilla total, 2 % y cuota. Una nota indica el reparto por provincias según el CCC y por qué se redondea al alza o a la baja.</p>
 
-    Set wsOrigen = ActiveSheet
+<h3>Cobertura de la cuota</h3>
+<ul>
+  <li><strong>Personas con discapacidad que cuentan</strong>: sale del fichero, pero se puede corregir a mano, por ejemplo para añadir trabajadores cedidos por una empresa de trabajo temporal.</li>
+  <li><strong>De alta a fin de cada mes</strong>: doce casillas con el número de personas con discapacidad de alta el último día de cada mes. Importa porque la obligación es continua y una inspección revisa al menos los 12 meses anteriores.</li>
+  <li><strong>Personas del fichero</strong>: el listado, con grado, tipo, días en el periodo y si está de alta en la fecha fin.</li>
+</ul>
 
-    ' --- VALIDACIÓN FECHAS R1 / S1 ---
-    If Not IsDate(wsOrigen.Range("R1").Value) Or Not IsDate(wsOrigen.Range("S1").Value) Then
-        MsgBox "Faltan las fechas de inicio/fin en R1 y S1", vbCritical
-        Exit Sub
-    End If
+<h3>Excepcionalidad y medidas alternativas</h3>
+<p>Solo aparece en las sociedades obligadas. Ver el <a href="#medidas">apartado 8</a>.</p>
 
-    FRefInicio = wsOrigen.Range("R1").Value
-    FRefFin    = wsOrigen.Range("S1").Value
+<h3>Simulador</h3>
+<p>Permite probar qué pasaría con más o menos plantilla o con nuevas contrataciones de personas con discapacidad, y cuánto costaría cubrir el resto con medidas alternativas. No cambia el cálculo ni se guarda.</p>
 
-    wsOrigen.AutoFilterMode = False
-    wsOrigen.Range("A:A").NumberFormat = "@"
-    UltimaFila = wsOrigen.Cells(wsOrigen.Rows.Count, "A").End(xlUp).Row
-    Application.ScreenUpdating = False
-    Application.DisplayAlerts  = False
+<h3>Personas de alta por CCC</h3>
+<p>Aparece cuando el fichero trae la columna <code>CCC emp.</code>. Tiene una fila por código de cuenta de cotización:</p>
+<div class="tabla"><table>
+  <tr><th>CCC</th><th>Provincia</th><th class="n">nov</th><th class="n">dic</th><th class="n">…</th><th class="n">oct</th><th class="n">Media</th><th class="n">%</th></tr>
+  <tr><td>08 0000000 00 <span class="cat"></span></td><td>Barcelona</td><td class="n">212</td><td class="n">214</td><td class="n">…</td><td class="n">220</td><td class="n">215,40</td><td class="n">52 %</td></tr>
+  <tr><td>28 0000000 00</td><td>Madrid</td><td class="n">196</td><td class="n">197</td><td class="n">…</td><td class="n">199</td><td class="n">197,10</td><td class="n">48 %</td></tr>
+  <tr class="tot"><td colspan="2">Total de personas de alta</td><td class="n">408</td><td class="n">411</td><td class="n">…</td><td class="n">419</td><td class="n">412,50</td><td class="n">100 %</td></tr>
+  <tr><td colspan="6">Ajuste de temporales de hasta un año (regla de los 200 días)</td><td class="n">+0,86</td><td></td></tr>
+  <tr class="tot"><td colspan="6">Plantilla computable</td><td class="n">413,36</td><td></td></tr>
+</table></div>
+<ul>
+  <li><strong>Meses</strong>: personas de alta el último día de cada mes.</li>
+  <li><strong>Media</strong>: días de alta del CCC divididos entre los días del periodo.</li>
+  <li><strong>%</strong>: peso del CCC en la sociedad. El subtotal de Catalunya es el porcentaje que decide el redondeo.</li>
+</ul>
+<div class="nota">
+  <p><strong>La media total no es la plantilla computable.</strong> Los fijos coinciden, pero los temporales de hasta un año cuentan aquí por días naturales y en la plantilla por la regla de los 200 días. Las dos últimas filas de la tabla explican la diferencia y terminan en la misma cifra que el indicador de plantilla.</p>
+</div>
 
-    ' FASE A: CÁLCULO DE DÍAS Y GRUPOS (Motor Cronológico LGD v9.1)
-    Dim DictPerson As Object
-    Set DictPerson = CreateObject("Scripting.Dictionary")
-    
-    Dim NpersD As String
-    For i = 2 To UltimaFila
-        NpersD = CStr(wsOrigen.Cells(i, 4).Value)
-        If NpersD <> "" Then
-            If Not DictPerson.Exists(NpersD) Then DictPerson.Add NpersD, New Collection
-            DictPerson(NpersD).Add i
-        End If
-    Next i
+<h3>Personas que computan</h3>
+<p>Todas las personas que cuentan en la plantilla de la sociedad, con su tipo, sus códigos de contrato y sus días. Tiene buscador por nombre o número de personal.</p>
 
-    Dim colRows As Collection, arrRows() As Long, actualEnds() As Date
+<div class="nota">
+  <p><strong>Listados largos.</strong> Las tablas muestran las 10 primeras filas. El botón «Ver las … filas» abre el resto con desplazamiento dentro del propio recuadro, sin mover la página. Al imprimir sale lo que tengas a la vista.</p>
+</div>
 
-    For Each key In DictPerson.Keys
-        Set colRows = DictPerson(key)
-        ReDim arrRows(1 To colRows.Count)
-        ReDim actualEnds(1 To colRows.Count)
-        
-        For j = 1 To colRows.Count
-            arrRows(j) = colRows(j)
-        Next j
+<!-- ============================================================ -->
+<h2 id="avisos">7. Pantalla «Avisos»</h2>
+<p>Agrupa lo que la aplicación no ha podido interpretar o conviene revisar. Se puede filtrar por sociedad y exportar a Excel.</p>
+<div class="tabla"><table>
+  <tr><th>Aviso</th><th>Qué hacer</th></tr>
+  <tr><td>Periodo de referencia</td><td>El periodo no son 12 meses exactos, o no coincide con el del fichero. Corrige las fechas.</td></tr>
+  <tr><td>Status ocupación</td><td>Falta la columna, o hay tramos con un estado no reconocido. Vuelve a exportar con ella.</td></tr>
+  <tr><td>Sin tipo de contrato o código «000»</td><td>No cuentan. Suelen ser consejeros; comprueba que no haya trabajadores con el contrato sin informar.</td></tr>
+  <tr><td>Código de contrato no reconocido</td><td>No cuentan. Hay que corregir el dato en SAP.</td></tr>
+  <tr><td>Fechas anómalas</td><td>Fechas vacías, invertidas o fuera de rango. Revisa esas filas.</td></tr>
+  <tr><td>Mismo nombre con varios números de personal</td><td>Solo aparece si el fichero no trae NIF. Comprueba si son la misma persona.</td></tr>
+  <tr><td>Temporales sin fecha fin que no llegan al año</td><td>Cuentan por la regla de los 200 días. Si el contrato está pactado para más de un año, deberían contar como fijos.</td></tr>
+  <tr><td>Tramos solapados o duplicados</td><td>Informativo: se unen solos y ningún día cuenta dos veces.</td></tr>
+  <tr><td>Fichero de personal con discapacidad</td><td>Personas del listado que no se han podido cruzar con la plantilla o que no computan.</td></tr>
+</table></div>
 
-        ' 1. Capturar Fecha de Baja Real
-        For j = 1 To UBound(arrRows)
-            Dim rowIdx As Long
-            rowIdx = arrRows(j)
-            Dim Status As String
-            Status = UCase(Trim(wsOrigen.Cells(rowIdx, 13).Value)) ' col M
-            
-            Dim BajaReal As Date
-            If Status = "DADO DE BAJA" Or Status = "INACTIVO" Then
-                Dim BajaRaw As Variant: BajaRaw = wsOrigen.Cells(rowIdx, 9).Value2
-                If IsDate(wsOrigen.Cells(rowIdx, 9).Value) And IsNumeric(BajaRaw) And BajaRaw &gt; 0 And BajaRaw &lt; 2958465 Then
-                    BajaReal = wsOrigen.Cells(rowIdx, 9).Value
-                Else
-                    BajaReal = DateSerial(9999, 12, 31)
-                End If
-            Else
-                BajaReal = DateSerial(9999, 12, 31)
-            End If
-            actualEnds(j) = BajaReal
-        Next j
+<!-- ============================================================ -->
+<h2 id="medidas">8. Excepcionalidad y medidas alternativas</h2>
+<p>Una empresa que no puede cubrir la cuota con contratación directa puede pedir la <strong>declaración de excepcionalidad</strong> y cumplir con medidas alternativas. Sin esa declaración, las medidas no eximen.</p>
+<ol>
+  <li>En el detalle de la sociedad, anota la <strong>fecha de la resolución</strong>. La aplicación controla sus 3 años de vigencia y avisa antes de que caduque.</li>
+  <li>Elige el <strong>IPREM anual</strong>: 12 pagas (criterio estatal) o 14 pagas (Catalunya).</li>
+  <li>La aplicación calcula el <strong>mínimo anual</strong> por cada puesto sin cubrir:
+    <ul>
+      <li>3 × IPREM en contratos con centros especiales de empleo, autónomos con discapacidad o enclaves laborales;</li>
+      <li>1,5 × IPREM en donaciones o patrocinio.</li>
+    </ul>
+  </li>
+  <li>Anota los <strong>importes del ejercicio</strong> en contratos y en donaciones. La aplicación dice a cuántos puestos equivalen y cuánto falta.</li>
+</ol>
+<p>Las medidas solo se tienen en cuenta si la resolución está vigente al cierre del periodo. Los importes son anuales, se guardan por ejercicio y no se acumulan de un año a otro. La cuantía definitiva la fija el servicio público de empleo en su resolución.</p>
 
-        ' 2. Orden Cronológico
-        Dim tempRow As Long, tempDate As Date, startJ As Date, startK As Date
-        For j = 1 To UBound(arrRows) - 1
-            For k = j + 1 To UBound(arrRows)
-                startJ = wsOrigen.Cells(arrRows(j), 7).Value
-                startK = wsOrigen.Cells(arrRows(k), 7).Value
-                
-                Dim swap As Boolean: swap = False
-                If startJ > startK Then
-                    swap = True
-                ElseIf startJ = startK Then
-                    If actualEnds(j) < actualEnds(k) Then swap = True
-                End If
-                
-                If swap Then
-                    tempRow = arrRows(j): arrRows(j) = arrRows(k): arrRows(k) = tempRow
-                    tempDate = actualEnds(j): actualEnds(j) = actualEnds(k): actualEnds(k) = tempDate
-                End If
-            Next k
-        Next j
+<!-- ============================================================ -->
+<h2 id="exportar">9. Exportaciones</h2>
+<div class="tabla"><table>
+  <tr><th>Botón</th><th>Dónde está</th><th>Qué genera</th></tr>
+  <tr><td>Exportar Anexo (Excel)</td><td>Detalle sociedad</td><td>El cálculo de la plantilla de esa sociedad, persona a persona y paso a paso. Si hay CCC, una segunda hoja con la tabla por CCC y mes.</td></tr>
+  <tr><td>Exportar anexos</td><td>Barra superior</td><td>Un solo libro con el Anexo de cada sociedad obligada y un índice delante.</td></tr>
+  <tr><td>Exportar resumen</td><td>Barra superior</td><td>Una fila por sociedad con plantilla, cuota, personas con discapacidad, estado y porcentaje de plantilla en Catalunya.</td></tr>
+  <tr><td>Exportar avisos</td><td>Avisos</td><td>La lista completa de avisos.</td></tr>
+  <tr><td>Imprimir / PDF</td><td>Detalle sociedad</td><td>La ficha de la sociedad tal como se ve en pantalla.</td></tr>
+</table></div>
 
-        ' 3. Resolutor de Solapamientos
-        If UBound(arrRows) &gt; 1 Then
-            Dim activeHorizon As Date: activeHorizon = actualEnds(1)
-            For j = 1 To UBound(arrRows) - 1
-                Dim currentStart As Date, nextStart As Date
-                currentStart = wsOrigen.Cells(arrRows(j), 7).Value: nextStart = wsOrigen.Cells(arrRows(j + 1), 7).Value
+<!-- ============================================================ -->
+<h2 id="guardado">10. Qué se guarda y qué no</h2>
+<p><strong>Los ficheros de SAP no se guardan nunca</strong>: hay que cargarlos cada vez. Lo que escribes a mano sí se guarda, de forma automática y solo en ese navegador:</p>
+<div class="tabla"><table>
+  <tr><th>Dato</th><th>Alcance</th></tr>
+  <tr><td>Fecha de la excepcionalidad</td><td>Por sociedad. Vale para cualquier periodo mientras esté vigente.</td></tr>
+  <tr><td>Importes de medidas alternativas</td><td>Por sociedad y ejercicio. Los de un año no se mezclan con los del siguiente.</td></tr>
+  <tr><td>Número de personas con discapacidad corregido a mano</td><td>Solo para el periodo exacto en que se corrigió.</td></tr>
+  <tr><td>IPREM de 12 o 14 pagas</td><td>General.</td></tr>
+</table></div>
+<p>Con <strong>«Guardar ajustes»</strong> se descarga un archivo con todo ello, para llevarlo a otro ordenador o compartirlo. Con <strong>«Cargar ajustes»</strong> se recupera.</p>
 
-                If currentStart = nextStart Then
-                    actualEnds(j + 1) = currentStart - 1
-                Else
-                    If nextStart &lt;= activeHorizon Then
-                        Dim dayBeforeNext As Date: dayBeforeNext = nextStart - 1
-                        If actualEnds(j) &gt; dayBeforeNext Then actualEnds(j) = dayBeforeNext
-                        If actualEnds(j + 1) &gt; activeHorizon Then activeHorizon = actualEnds(j + 1)
-                    Else
-                        If actualEnds(j + 1) &gt; activeHorizon Then activeHorizon = actualEnds(j + 1)
-                    End If
-                End If
-            Next j
-        End If
+<!-- ============================================================ -->
+<h2 id="config">11. Cambiar criterios (<code>config.js</code>)</h2>
+<p>Los criterios se cambian en un único archivo, <code>js/config.js</code>, que se abre con el Bloc de notas. Cada opción lleva su explicación al lado.</p>
+<div class="tabla"><table>
+  <tr><th>Opción</th><th>Qué controla</th><th>Valor actual</th></tr>
+  <tr><td><code>REDONDEO_POR_DEFECTO</code></td><td>Redondeo de la cuota cuando no aplica la regla de Catalunya.</td><td>A la baja</td></tr>
+  <tr><td><code>REDONDEO_AUTOMATICO_POR_CCC</code></td><td>Redondear al alza las sociedades que llegan al umbral en Catalunya.</td><td>Activado</td></tr>
+  <tr><td><code>UMBRAL_PLANTILLA_CATALUNYA</code></td><td>Parte de la plantilla que debe estar en Catalunya.</td><td>85 %</td></tr>
+  <tr><td><code>REDONDEO_POR_SOCIEDAD</code></td><td>Excepciones fijadas a mano. Mandan sobre todo lo demás.</td><td>Ninguna</td></tr>
+  <tr><td><code>FD_INACTIVIDAD_POR_DEFECTO</code></td><td>Estado inicial de la casilla de fijos discontinuos.</td><td>Desmarcada</td></tr>
+  <tr><td><code>IPREM_ANUAL_12_PAGAS</code> y <code>IPREM_ANUAL_14_PAGAS</code></td><td>IPREM anual. Hay que revisarlo cada año.</td><td>7.200 € y 8.400 € (2026)</td></tr>
+  <tr><td><code>FUSIONAR_MISMO_NOMBRE</code></td><td>Sin NIF, tratar como una persona a quien tiene el mismo nombre y varios números en la misma sociedad.</td><td>Activado</td></tr>
+  <tr><td><code>ALERTA_UMBRAL_TRABAJADORES</code></td><td>Distancia a los 50 o a un cambio de cuota para marcar la banderita.</td><td>5</td></tr>
+  <tr><td><code>AVISO_CADUCIDAD_EXCEPCIONALIDAD_DIAS</code></td><td>Antelación del aviso de caducidad de la excepcionalidad.</td><td>180 días</td></tr>
+</table></div>
 
-        ' 4. Escribir Resultados Días / Grupo
-        For j = 1 To UBound(arrRows)
-            Dim rIdx As Long: rIdx = arrRows(j)
-            Dim InicioAjustado As Date, FinAjustado As Date
-            InicioAjustado = wsOrigen.Cells(rIdx, 7).Value: FinAjustado = actualEnds(j)
-            
-            If InicioAjustado &lt; FRefInicio Then InicioAjustado = FRefInicio
-            If FinAjustado &gt; FRefFin Then FinAjustado = FRefFin
-            If FinAjustado &gt;= InicioAjustado Then Dias = DateDiff("d", InicioAjustado, FinAjustado) + 1 Else Dias = 0
-            
-            wsOrigen.Cells(rIdx, 14).Value = Dias
-            If Dias &gt; 0 Then
-                Const H_SENTINEL As Long = 365000
-                Dim TipoContrato As String: TipoContrato = Trim(wsOrigen.Cells(rIdx, 12).Value) ' col L
-                
-                Dim EsTemporal As Boolean
-                EsTemporal = ((InStr(1, TipoContrato, "Dur.temp", vbTextCompare) &gt; 0 Or _
-                              InStr(1, TipoContrato, "Duración", vbTextCompare) &gt; 0 Or _
-                              InStr(1, TipoContrato, "Temporal", vbTextCompare) &gt; 0) And _
-                              InStr(1, TipoContrato, "transformacion", vbTextCompare) = 0 And _
-                              InStr(1, TipoContrato, "transformación", vbTextCompare) = 0)
-                
-                Dim FechaHraw As Variant: FechaHraw = wsOrigen.Cells(rIdx, 8).Value2 ' col H numérico
-                Dim EsGrupoA As Boolean
-                If EsTemporal Then
-                    If IsNumeric(FechaHraw) And FechaHraw &gt; 0 And FechaHraw &lt; H_SENTINEL Then
-                        EsGrupoA = (DateDiff("d", wsOrigen.Cells(rIdx, 7).Value, CDate(wsOrigen.Cells(rIdx, 8).Value)) &gt; 365)
-                    Else
-                        EsGrupoA = (DateDiff("d", wsOrigen.Cells(rIdx, 7).Value, FRefFin) &gt; 365)
-                    End If
-                Else
-                    If IsEmpty(wsOrigen.Cells(rIdx, 8).Value) Or FechaHraw = 0 Or FechaHraw = "" Then
-                        EsGrupoA = True
-                    ElseIf IsDate(wsOrigen.Cells(rIdx, 8).Value) Then
-                        EsGrupoA = (DateDiff("d", wsOrigen.Cells(rIdx, 7).Value, CDate(wsOrigen.Cells(rIdx, 8).Value)) &gt; 365)
-                    Else
-                        EsGrupoA = True
-                    End If
-                End If
+<!-- ============================================================ -->
+<h2 id="problemas">12. Problemas frecuentes</h2>
+<div class="tabla"><table>
+  <tr><th>Qué pasa</th><th>Causa y solución</th></tr>
+  <tr><td>La página se abre sin formato o no hace nada.</td><td>Falta parte de la carpeta. Copia la carpeta entera, con <code>css</code>, <code>js</code>, <code>lib</code> y <code>fonts</code>.</td></tr>
+  <tr><td>La plantilla sale mucho más alta de lo esperado.</td><td>El fichero no trae <code>Status ocupación</code> y se están contando personas de baja. Vuelve a exportar con esa columna.</td></tr>
+  <tr><td>Avisa de que el periodo no son 12 meses.</td><td>Las fechas no cubren un año exacto. Corrígelas en la barra superior.</td></tr>
+  <tr><td>Avisa de que el fichero es de otro periodo.</td><td>Has cambiado las fechas respecto a las del fichero. Los días que el fichero no cubre cuentan como si nadie estuviera de alta.</td></tr>
+  <tr><td>Los primeros meses salen con menos personas con discapacidad.</td><td>El listado solo trae a quienes están de alta hoy. Expórtalo para todo el periodo.</td></tr>
+  <tr><td>No aparece la tabla por CCC ni la marca de Catalunya.</td><td>El fichero no trae la columna <code>CCC emp.</code></td></tr>
+  <tr><td>Han desaparecido las fechas de excepcionalidad o los importes.</td><td>Se guardan en cada navegador. Recupéralos con «Cargar ajustes» desde un archivo guardado antes.</td></tr>
+  <tr><td>He añadido columnas a la exportación y no sé si he perdido filas.</td><td>Usa <code>Comparar_exportaciones.html</code>, en la misma carpeta: carga la exportación anterior y la nueva y dice qué filas faltan o sobran.</td></tr>
+</table></div>
 
-                If EsGrupoA Then
-                    wsOrigen.Cells(rIdx, 15).Value = "Grupo A"
-                    wsOrigen.Cells(rIdx, 16).Value = Round(Dias / 365, 3)
-                Else
-                    wsOrigen.Cells(rIdx, 15).Value = "Grupo B"
-                    wsOrigen.Cells(rIdx, 16).Value = Dias
-                End If
-            Else
-                wsOrigen.Cells(rIdx, 15).Value = "Grupo B": wsOrigen.Cells(rIdx, 16).Value = 0
-            End If
-        Next j
-    Next key
+<!-- ============================================================ -->
+<h2 id="anterior">13. Cambios respecto a la versión anterior</h2>
+<p>Esta versión sustituye a <code>Calculadora_LGD_Standalone.html</code>. Los cambios que más afectan al resultado:</p>
+<div class="tabla"><table>
+  <tr><th>Aspecto</th><th>Antes</th><th>Ahora</th></tr>
+  <tr><td>Filas «Go Live» de personas de baja</td><td>No existían</td><td>Se descartan por <code>Status ocupación</code></td></tr>
+  <tr><td>Identificación de la persona</td><td>Por nombre</td><td>Por NIF y número de personal</td></tr>
+  <tr><td>Tipo de contrato</td><td>Por el texto del contrato; algunos códigos quedaban fuera sin avisar</td><td>Por el primer dígito del código; lo que no cuenta, se avisa</td></tr>
+  <tr><td>Temporal «de más de un año»</td><td>Desde la antigüedad hasta el fin del periodo</td><td>Duración real del contrato</td></tr>
+  <tr><td>Redondeo de la cuota</td><td>Igual para todas</td><td>A la baja; al alza con el 85 % de la plantilla en Catalunya</td></tr>
+  <tr><td>Medidas alternativas</td><td>Una casilla</td><td>Cálculo con IPREM, excepcionalidad y ejercicio</td></tr>
+  <tr><td>Anexo</td><td>PDF</td><td>Excel que sigue los pasos del Criterio Técnico</td></tr>
+  <tr><td>Reparto por CCC</td><td>Desglose mensual</td><td>Tabla por CCC y mes, con ajuste hasta la plantilla computable</td></tr>
+</table></div>
+<div class="aviso">
+  <p><strong>Las macros de Excel (VBA) de la versión anterior ya no se mantienen.</strong> No descartan a las personas de baja por «Status ocupación» ni aplican los criterios de esta versión, así que sus resultados no coinciden con los de la aplicación. La única fuente válida es <code>Calculadora_LGD.html</code>.</p>
+</div>
 
-    ' FASE B: GENERACIÓN DE PESTAÑAS
-    Set RangoA_S = wsOrigen.Range("A1:S" &amp; UltimaFila)
-    Set Diccionario = CreateObject("Scripting.Dictionary")
+<!-- ============================================================ -->
+<h2 id="normas">14. Normativa de referencia</h2>
+<div class="tabla"><table>
+  <tr><th>Norma</th><th>Qué regula</th></tr>
+  <tr><td>RDL 1/2013 (Ley General de Discapacidad), art. 42</td><td>La obligación: empresas de 50 o más trabajadores, 2 % de la plantilla.</td></tr>
+  <tr><td>RD 364/2005, de 8 de abril</td><td>Cómputo de la plantilla, excepcionalidad y medidas alternativas.</td></tr>
+  <tr><td>Criterio Técnico ITSS 98/2016</td><td>El método de cálculo que sigue la aplicación.</td></tr>
+  <tr><td>Decret 86/2015 (Generalitat de Catalunya)</td><td>Redondeo al alza desde 0,5 e IPREM con 14 pagas, para las empresas de su ámbito.</td></tr>
+  <tr><td>RD 1451/1983, art. 5</td><td>Comunicación anual en el primer trimestre.</td></tr>
+  <tr><td>LISOS (RDL 5/2000), arts. 15.3, 40.1 b) y 46.1</td><td>Infracción grave, cuantía de la multa y sanciones accesorias.</td></tr>
+  <tr><td>Ley 9/2017, art. 71.1 d)</td><td>Prohibición de contratar con el sector público.</td></tr>
+</table></div>
+<p>Las dudas sobre la norma (quién cuenta, cómo se presenta, sanciones) están respondidas en la pestaña <strong>«Preguntas frecuentes»</strong> de la aplicación, cada una con el apartado en que se apoya.</p>
 
-    For i = 2 To UltimaFila
-        CodigoSoc = Trim(wsOrigen.Cells(i, 1).Text)
-        If CodigoSoc &lt;&gt; "" And Not Diccionario.Exists(CodigoSoc) Then
-            Diccionario.Add CodigoSoc, 1
-            NombreHoja = Left(Replace(Replace(CodigoSoc, "/", "_"), "*", ""), 31)
-            On Error Resume Next
-            Sheets(NombreHoja).Delete
-            On Error GoTo 0
-            Set wsNueva = Sheets.Add(After:=Sheets(Sheets.Count))
-            wsNueva.Name = NombreHoja
-            wsOrigen.AutoFilterMode = False
-            RangoA_S.AutoFilter Field:=1, Criteria1:=CodigoSoc
-            RangoA_S.SpecialCells(xlCellTypeVisible).Copy Destination:=wsNueva.Range("A1")
-            wsNueva.Columns.AutoFit
-        End If
-    Next i
-    wsOrigen.AutoFilterMode = False
+</main>
 
-    ' FASE C: ORDENAR HOJAS NUMÉRICAMENTE
-    Dim hojas() As Variant, idxL As Long, tempVar As Variant
-    ReDim hojas(1 To Diccionario.Count)
-    idxL = 1
+<div class="pie">Cumplimiento LGD · versión 2 · manual actualizado el 22/11/2026. Cálculo orientativo según el Criterio Técnico 98/2016.</div>
 
-    For Each key In Diccionario.Keys
-        If IsNumeric(key) Then
-            hojas(idxL) = CDbl(key)
-            idxL = idxL + 1
-        End If
-    Next key
-
-    For j = LBound(hojas) To UBound(hojas) - 1
-        For k = j + 1 To UBound(hojas)
-            If hojas(j) &gt; hojas(k) Then tempVar = hojas(j): hojas(j) = hojas(k): hojas(k) = tempVar
-        Next k
-    Next j
-
-    For j = LBound(hojas) To UBound(hojas)
-        If hojas(j) &lt;&gt; 0 Then
-            On Error Resume Next
-            Sheets(CStr(hojas(j))).Move After:=wsOrigen
-            Set wsOrigen = Sheets(CStr(hojas(j)))
-            On Error GoTo 0
-        End If
-    Next j
-
-    Sheets(1).Activate
-    Application.ScreenUpdating = True
-    Application.DisplayAlerts  = True
-
-    MsgBox "LGD v9.1 completado." &amp; vbCrLf &amp; "Sociedades generadas: " &amp; Diccionario.Count, vbInformation
-
-End Sub
-</pre>
-            </div>
-
-<h2>Macro 2: Generar Plantilla Oficial (Anexo)</h2><p>Esta macro independiente escanea el resultado de DividirSociedades y genera el Anexo Excel oficial calculando fracciones (Grupo A) y unidades (Grupo B).</p><div class="code-block"><pre><code class="language-vba">Sub Generar_Plantilla_Oficial_LGD_v2()
-    Dim wsOrigen As Worksheet, wsDestino As Worksheet
-    Dim UltimaFila As Long, i As Long
-    Dim CodigoBuscado As String
-    Dim colEmpresa As Integer, colID As Integer, colNombre As Integer
-    Dim colDias As Integer, colGrupo As Integer
-    
-    &apos; Configuración de Columnas de Origen basado en la macro v9.1
-    colEmpresa = 1    &apos; Columna A: SOC
-    colID = 4         &apos; Columna D: PERNR (ID Personal)
-    colNombre = 5     &apos; Columna E: Nombre Trabajador/a
-    colDias = 14      &apos; Columna N: Días Activos calculados por macro anterior
-    colGrupo = 15     &apos; Columna O: Grupo asignado (A o B)
-    
-    Set wsOrigen = ActiveSheet
-    
-    &apos; Preguntamos qué sociedad quiere exportar
-    CodigoBuscado = InputBox(&quot;Introduce el código de la Sociedad (ej. 1406) para generar su anexo oficial:&quot;, &quot;Anexo LGD&quot;)
-    If Trim(CodigoBuscado) = &quot;&quot; Then Exit Sub
-    
-    UltimaFila = wsOrigen.Cells(wsOrigen.Rows.Count, &quot;A&quot;).End(xlUp).Row
-    
-    &apos; Diccionario para consolidar personas manteniendo el orden exacto de aparición
-    Dim dictTrabajadores As Object
-    Set dictTrabajadores = CreateObject(&quot;Scripting.Dictionary&quot;)
-    
-    Dim idTrabajador As String, nombreTrabajador As String
-    Dim diasTramo As Long, isGroupA As Boolean, grupoTexto As String
-    Dim arrDatos As Variant
-    Dim nombreEmpresa As String
-    
-    nombreEmpresa = CodigoBuscado &apos; Por defecto
-    
-    &apos; 1. ESCANEO Y CONSOLIDACIÓN DEL EXCEL ORIGINAL
-    For i = 2 To UltimaFila
-        If CStr(wsOrigen.Cells(i, colEmpresa).Value) = CodigoBuscado Then
-            If wsOrigen.Cells(i, 2).Value &lt;&gt; &quot;&quot; Then nombreEmpresa = wsOrigen.Cells(i, 2).Value
-            
-            idTrabajador = CStr(wsOrigen.Cells(i, colID).Value)
-            nombreTrabajador = CStr(wsOrigen.Cells(i, colNombre).Value)
-            diasTramo = CLng(wsOrigen.Cells(i, colDias).Value)
-            grupoTexto = UCase(Trim(wsOrigen.Cells(i, colGrupo).Value))
-            isGroupA = (grupoTexto = &quot;GRUPO A&quot;)
-            
-            &apos; Clave única
-            Dim clave As String
-            clave = idTrabajador &amp; &quot;|&quot; &amp; nombreTrabajador
-            
-            If Not dictTrabajadores.Exists(clave) Then
-                &apos; Guardamos: Array(Nombre, Días Acumulados, EsGrupoA)
-                dictTrabajadores.Add clave, Array(nombreTrabajador, diasTramo, isGroupA)
-            Else
-                arrDatos = dictTrabajadores(clave)
-                arrDatos(1) = arrDatos(1) + diasTramo
-                If isGroupA Then arrDatos(2) = True
-                dictTrabajadores(clave) = arrDatos
-            End If
-        End If
-    Next i
-    
-    If dictTrabajadores.Count = 0 Then
-        MsgBox &quot;No se encontraron registros activos para la Sociedad &quot; &amp; CodigoBuscado &amp; &quot; en la hoja actual.&quot;, vbExclamation
-        Exit Sub
-    End If
-    
-    Application.ScreenUpdating = False
-    
-    &apos; 2. CREAR NUEVA HOJA PLANTILLA &quot;ANEXO&quot;
-    Set wsDestino = ThisWorkbook.Sheets.Add(After:=wsOrigen)
-    wsDestino.Name = &quot;Anexo_&quot; &amp; CodigoBuscado
-    wsDestino.Tab.Color = vbGreen
-    
-    &apos; Títulos de &quot;Anexo_Cuota.xlsx&quot;
-    wsDestino.Cells(1, 1).Value = &quot;ANEXO&quot;
-    wsDestino.Cells(1, 1).Font.Bold = True
-    
-    wsDestino.Cells(2, 1).Value = &quot;El señor/a........................., con NIF......................., en calidad de........................de la empresa &quot; &amp; nombreEmpresa &amp; &quot;, con CIF............................, DECLARA:&quot;
-    wsDestino.Cells(3, 1).Value = &quot;Que la media de personas trabajadoras (a tiempo completo o parcial) en los 12 meses anteriores, comprendidos entre el 01/03/2025 y 28/02/2026, calculada según lo previsto en el RD 364/2005, de 8 de abril, es la que resulta del siguiente cuadro de datos:&quot;
-    
-    &apos; Fila 4: Encabezados Requeridos
-    wsDestino.Cells(4, 1).Value = &quot;Nombre Trabajador/a&quot;
-    wsDestino.Cells(4, 2).Value = &quot;Personas con contrato indefinido, que hayan trabajado 365 días en el periodo (Indicar un 1 en tal caso)&quot;
-    wsDestino.Cells(4, 3).Value = &quot;Personas con contrato temporal, que hayan trabajado 200* o más días en el periodo (Indicar un 1 en la celda)&quot;
-    wsDestino.Cells(4, 4).Value = &quot;Días trabajados en el periodo por las personas con contrato indefinito que hayan trabajado menos de 365 días (o con contrato temporal superior a un año, que hayan trabajado menos de 200 días)&quot;
-    wsDestino.Cells(4, 5).Value = &quot;Días trabajados* en el período por las personas con contrato temporal que hayan trabajado menos de 200 días (y que no tengan contrato superior a un año)&quot;
-    wsDestino.Cells(4, 6).Value = &quot;TOTAL plantilla media&quot;
-    
-    wsDestino.Range(&quot;A4:F4&quot;).Font.Bold = True
-    wsDestino.Range(&quot;A4:F4&quot;).VerticalAlignment = xlCenter
-    wsDestino.Range(&quot;A4:F4&quot;).HorizontalAlignment = xlCenter
-    wsDestino.Range(&quot;A4:F4&quot;).WrapText = True
-    wsDestino.Rows(4).RowHeight = 70
-    
-    &apos; 3. VOLCADO LÓGICO DE DATOS B/C/D/E (Fila 5 en adelante)
-    Dim filaDestino As Long
-    filaDestino = 5
-    
-    Dim claveKey As Variant
-    Dim nombreOut As String
-    Dim diasOut As Long
-    Dim esGrpA As Boolean
-    
-    For Each claveKey In dictTrabajadores.Keys
-        arrDatos = dictTrabajadores(claveKey)
-        nombreOut = arrDatos(0)
-        diasOut = arrDatos(1)
-        esGrpA = arrDatos(2)
-        
-        wsDestino.Cells(filaDestino, 1).Value = nombreOut
-        wsDestino.Cells(filaDestino, 2).Value = &quot;&quot;
-        wsDestino.Cells(filaDestino, 3).Value = &quot;&quot;
-        wsDestino.Cells(filaDestino, 4).Value = &quot;&quot;
-        wsDestino.Cells(filaDestino, 5).Value = &quot;&quot;
-        
-        If esGrpA Then
-            If diasOut &gt;= 365 Then
-                wsDestino.Cells(filaDestino, 2).Value = 1
-            Else
-                wsDestino.Cells(filaDestino, 4).Value = diasOut
-            End If
-        Else
-            If diasOut &gt;= 200 Then
-                wsDestino.Cells(filaDestino, 3).Value = 1
-            Else
-                wsDestino.Cells(filaDestino, 5).Value = diasOut
-            End If
-        End If
-        
-        &apos; Fórmula individual por trabajador (opcional, aunque en tu anexo el total es global abajo,
-        &apos; dejaremos la fórmula por fila igual por si acaso te sirve, o la quitamos si no la necesitas).
-        &apos; Descomenta esta línea si quieres desglose de cuota por trabajador:
-        &apos; wsDestino.Cells(filaDestino, 6).Formula = &quot;=B&quot; &amp; filaDestino &amp; &quot;+C&quot; &amp; filaDestino &amp; &quot;+(D&quot; &amp; filaDestino &amp; &quot;/365)+(E&quot; &amp; filaDestino &amp; &quot;/200)&quot;
-        
-        filaDestino = filaDestino + 1
-    Next claveKey
-    
-    &apos; 4. TEXTOS Y TOTALES FINALES DEL ANEXO OFICIAL
-    Dim fTotales As Long
-    fTotales = filaDestino + 1
-    
-    wsDestino.Cells(fTotales, 4).Value = &quot;Total dies=&quot;
-    wsDestino.Cells(fTotales, 5).Value = &quot;Total dies=&quot;
-    wsDestino.Cells(fTotales, 4).Font.Bold = True
-    wsDestino.Cells(fTotales, 5).Font.Bold = True
-    
-    fTotales = fTotales + 1
-    &apos; Sumandos A-B-C-D
-    wsDestino.Cells(fTotales, 2).Formula = &quot;=&quot;&quot;A-Total persones=&quot;&quot; &amp; SUM(B5:B&quot; &amp; (filaDestino - 1) &amp; &quot;)&quot;
-    wsDestino.Cells(fTotales, 3).Formula = &quot;=&quot;&quot;B-Total persones=&quot;&quot; &amp; SUM(C5:C&quot; &amp; (filaDestino - 1) &amp; &quot;)&quot;
-    wsDestino.Cells(fTotales, 4).Formula = &quot;=&quot;&quot;C-Dividir total dies/365=&quot;&quot; &amp; SUM(D5:D&quot; &amp; (filaDestino - 1) &amp; &quot;)/365&quot;
-    wsDestino.Cells(fTotales, 5).Formula = &quot;=&quot;&quot;D-Dividir total dies/200=&quot;&quot; &amp; SUM(E5:E&quot; &amp; (filaDestino - 1) &amp; &quot;)/200&quot;
-    
-    &apos; Fórmula Total global
-    wsDestino.Cells(fTotales, 6).Formula = &quot;=&quot;&quot;TOTAL A+B+C+D=&quot;&quot; &amp; (SUM(B5:B&quot; &amp; (filaDestino - 1) &amp; &quot;) + SUM(C5:C&quot; &amp; (filaDestino - 1) &amp; &quot;) + (SUM(D5:D&quot; &amp; (filaDestino - 1) &amp; &quot;)/365) + (SUM(E5:E&quot; &amp; (filaDestino - 1) &amp; &quot;)/200))&quot;
-    wsDestino.Range(&quot;B&quot; &amp; fTotales &amp; &quot;:F&quot; &amp; fTotales).Font.Bold = True
-    
-    fTotales = fTotales + 1
-    &apos; Explicaciones legales en la parte inferior
-    wsDestino.Cells(fTotales, 3).Value = &quot;*Als efectes del còmput de 200 dies S&apos;han de comptabilitzar també els dies de descans setmanal, els festius i les vacances anuals.&quot;
-    wsDestino.Cells(fTotales, 5).Value = &quot;*S&apos;han de comptabilitzar també els dies de descans setmanal, els festius i les vacances anuals.&quot;
-    wsDestino.Cells(fTotales, 3).Font.Italic = True
-    wsDestino.Cells(fTotales, 5).Font.Italic = True
-    
-    &apos; Ajustes Estéticos
-    wsDestino.Columns(&quot;A:A&quot;).ColumnWidth = 35
-    wsDestino.Columns(&quot;B:F&quot;).ColumnWidth = 18
-    &apos; Cuadricula en la tabla central
-    wsDestino.Range(&quot;A4:F&quot; &amp; (filaDestino - 1)).Borders.LineStyle = xlContinuous
-    &apos; Formato a textos descriptivos
-    wsDestino.Range(&quot;A2:A3&quot;).WrapText = False
-    
-    Application.ScreenUpdating = True
-    MsgBox &quot;Anexo Oficial generado correctamente en la nueva pestaña &apos;Anexo_&quot; &amp; CodigoBuscado &amp; &quot;&apos;.&quot;, vbInformation
-End Sub
-</code></pre></div>
 </body>
-
 </html>
